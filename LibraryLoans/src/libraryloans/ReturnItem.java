@@ -6,8 +6,9 @@ package libraryloans;
 
 /**
  *
- * @author Mark McErlean (B00842054)
- * Stephen McKeown (B00 )
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00    )
  */
 public class ReturnItem {
     // input barcode

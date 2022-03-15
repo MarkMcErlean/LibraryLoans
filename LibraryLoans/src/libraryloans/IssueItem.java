@@ -6,7 +6,9 @@ package libraryloans;
 
 /**
  *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00    )
  * 
  * This class will be used to create a new loan
  * librarian will supply a barcode and user ID
