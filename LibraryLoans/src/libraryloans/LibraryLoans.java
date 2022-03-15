@@ -5,16 +5,33 @@
 package libraryloans;
 
 /**
- *
- * @author mark1
+ * Program is intended to store and manage details of 
+ * library items currently on loan to library users according
+ * to a list of functional requirements
+ * 
+ * CONSOLE INTERFACE ONLY
+ * 
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00    )
  */
 public class LibraryLoans {
 
     /**
      * @param args the command line arguments
+     * 
+     *  upon program start, should read from three csv files
+     *  to populate application with previously stored data 
+     *  as a starting point
      */
+    
+ 
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        // items, users and loans stored as lists/arrays
+        
+        
+        // Wnhen program exits, list of loans should be written to LOANS.csv
     }
     
 }
