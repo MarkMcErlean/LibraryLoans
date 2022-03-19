@@ -30,8 +30,6 @@ public class LibraryLoans {
     private String[] itemsList = {};
     private String[] loansList = {};
     private String[] usersList = {};
-           
-    
     
     private void readItems(){
         try{            
@@ -42,8 +40,10 @@ public class LibraryLoans {
         while (myReader.hasNextLine())
         {
             String data = myReader.nextLine();
-            System.out.println(data);
-        }
+            //System.out.println(data);
+            itemsList = data.split(",");
+            //System.out.println(itemsList[0]); // checking that the array stores data
+        }        
             myReader.close();
         } catch (FileNotFoundException e){
             System.out.println("An error has occured.");
@@ -60,12 +60,14 @@ public class LibraryLoans {
         while (myReader.hasNextLine())
         {
             String data = myReader.nextLine();
-            System.out.println(data);
+            //System.out.println(data);
+            loansList = data.split(",");
+            //System.out.println(loansList[0]); // checking that the array stores data
+  
         }
             myReader.close();
         } catch (FileNotFoundException e){
-            System.out.println("An error has occured.");
-            
+            System.out.println("An error has occured.");  
         }
     }
     
@@ -78,15 +80,17 @@ public class LibraryLoans {
         while (myReader.hasNextLine())
         {
             String data = myReader.nextLine();
-            System.out.println(data);
+            //System.out.println(data);
+            usersList = data.split(",");
+            //System.out.println(usersList[0]); // checking that the array stores data
         }
             myReader.close();
         } catch (FileNotFoundException e){
             System.out.println("An error has occured.");
             
         }
+        
     }
-    
     
     public void start(){
         this.readItems();
@@ -94,14 +98,13 @@ public class LibraryLoans {
         this.readUsers();
     }
     
-    
     public static void main(String[] args) {
         // items, users and loans stored as lists/arrays
         LibraryLoans libLoan = new LibraryLoans();
         
         libLoan.start();
         
-        // Wnhen program exits, list of loans should be written to LOANS.csv
+        // When program exits, list of loans should be written to LOANS.csv
     }
     
 }
