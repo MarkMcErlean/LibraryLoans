@@ -27,7 +27,7 @@ public class IssueItem {
     private Scanner scan;
     
     
-    private void checkUser(){
+    public void checkUser(){
         String input;
         
         scan = new Scanner (System.in) ; // Creates scanner instance
@@ -42,7 +42,7 @@ public class IssueItem {
     }
     
     
-    private void checkItem(){
+    public void checkItem(){
         String input;
         
         scan = new Scanner (System.in) ; // Creates scanner instance
@@ -58,16 +58,16 @@ public class IssueItem {
     
     
     public void start(){
-        this.checkUser();
+        this.checkUser(); 
         this.checkItem();
+    //}
+    
+    
+//    public static void main(String[] args) {
+//        IssueItem issItem = new IssueItem();
+//        issItem.start();
+//    }
+    
     }
-    
-    
-    public static void main(String[] args) {
-        IssueItem issItem = new IssueItem();
-        issItem.start();
-    }
-    
-    
 }
 

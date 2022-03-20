@@ -27,75 +27,15 @@ public class LibraryLoans {
      *  as a starting point
      */
     
-    private String[] itemsList = {};
-    private String[] loansList = {};
-    private String[] usersList = {};
-    
-    private void readItems(){
-        try{            
-            File items = new File ("D:\\Java stuff\\LibraryLoans\\LibraryLoans\\LibraryLoans\\src\\libraryloans\\ITEMS.csv");
-        Scanner myReader = new Scanner(items);
-        myReader.useDelimiter(","); // sets a comma as the delimiter
-        
-        while (myReader.hasNextLine())
-        {
-            String data = myReader.nextLine();
-            //System.out.println(data);
-            itemsList = data.split(",");
-            //System.out.println(itemsList[0]); // checking that the array stores data
-        }        
-            myReader.close();
-        } catch (FileNotFoundException e){
-            System.out.println("An error has occured.");
-            
-        }
-    }
- 
-    private void readLoans(){
-        try{            
-            File loans = new File ("D:\\Java stuff\\LibraryLoans\\LibraryLoans\\LibraryLoans\\src\\libraryloans\\LOANS.csv");
-        Scanner myReader = new Scanner(loans);
-        myReader.useDelimiter(","); // sets a comma as the delimiter
-        
-        while (myReader.hasNextLine())
-        {
-            String data = myReader.nextLine();
-            //System.out.println(data);
-            loansList = data.split(",");
-            //System.out.println(loansList[0]); // checking that the array stores data
-  
-        }
-            myReader.close();
-        } catch (FileNotFoundException e){
-            System.out.println("An error has occured.");  
-        }
-    }
-    
-     private void readUsers(){
-        try{            
-            File users = new File ("D:\\Java stuff\\LibraryLoans\\LibraryLoans\\LibraryLoans\\src\\libraryloans\\USERS.csv");
-        Scanner myReader = new Scanner(users);
-        myReader.useDelimiter(","); // sets a comma as the delimiter
-        
-        while (myReader.hasNextLine())
-        {
-            String data = myReader.nextLine();
-            //System.out.println(data);
-            usersList = data.split(",");
-            //System.out.println(usersList[0]); // checking that the array stores data
-        }
-            myReader.close();
-        } catch (FileNotFoundException e){
-            System.out.println("An error has occured.");
-            
-        }
-        
-    }
+    private StoreData storedata = new StoreData();
+    private IssueItem issueitem = new IssueItem();
+    private StoreItems storeItems = new StoreItems();
     
     public void start(){
-        this.readItems();
-        this.readLoans();
-        this.readUsers();
+        
+        storedata.start();
+        storeItems.tempName();
+        //issueitem.start();
     }
     
     public static void main(String[] args) {
