@@ -34,7 +34,7 @@ public class LibraryLoans {
     public void start(){
         
         storedata.start();
-        storeItems.tempName();
+        storeItems.readFromFile();
         //issueitem.start();
     }
     
