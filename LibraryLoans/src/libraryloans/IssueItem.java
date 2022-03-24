@@ -26,48 +26,16 @@ public class IssueItem {
     private String[] usersList = {"b00839440", "b00842054"};
     private Scanner scan;
     
+    private ValidateData validate = new ValidateData();
     
-    public void checkUser(){
-        String input;
-        
-        scan = new Scanner (System.in) ; // Creates scanner instance
-        System.out.println("Please enter in the User ID: ");
-        
-        input = scan.next();
-        boolean result = Arrays.stream(usersList).anyMatch(input::equals);
-	if (result) 
-            System.out.println("This User ID exits in the system.");
-        else 
-            System.out.println("This User ID does not exist.");
-    }
+//    
+//  
+    
+    // if checkItem is true and check user is true
+    // create a new loan item with those details
     
     
-    public void checkItem(){
-        String input;
-        
-        scan = new Scanner (System.in) ; // Creates scanner instance
-        System.out.println("Please enter in the item barcode: ");
-        
-        input = scan.next();
-        boolean result = Arrays.stream(usersList).anyMatch(input::equals);
-	if (result) 
-            System.out.println("This item exits in the system.");
-        else
-            System.out.println("This item does not exist in the system.");
-    }
     
     
-    public void start(){
-        this.checkUser(); 
-        this.checkItem();
-    //}
-    
-    
-//    public static void main(String[] args) {
-//        IssueItem issItem = new IssueItem();
-//        issItem.start();
-//    }
-    
-    }
 }
 

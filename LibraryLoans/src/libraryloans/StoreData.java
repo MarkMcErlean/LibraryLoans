@@ -2,7 +2,9 @@ package libraryloans;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+//import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 /**
  *
@@ -18,28 +20,26 @@ public class StoreData {
     
     
     public void readItems(){
-        String data = "";
-        int counter = 0;
-        
         try{            
             File items = new File ("ITEMS.csv");
-            Scanner myReader = new Scanner(items);
-            //myReader.useDelimiter(","); // sets a comma as the delimiter
+        Scanner myReader = new Scanner(items);
+        //myReader.useDelimiter(","); // sets a comma as the delimiter
         
         while (myReader.hasNextLine())
         {
-            data = myReader.nextLine();
-            //System.out.println(data);
+            String data = myReader.nextLine();
+            //System.out.println(line);
             itemsList = data.split(",");
-            //itemsList = data.split(",");
-            //System.out.println(itemsList[0]); // checking that the array stores data
-        }        
+            //System.out.println(loansList[0]); // checking that the array stores line
+        }
             myReader.close();
         } catch (FileNotFoundException e){
-            System.out.println("An error has occured.");
+            System.out.println("An error has occured.");  
             e.getStackTrace();
         }
+        
     }
+        
  
     public void readLoans(){
         try{            
@@ -50,10 +50,9 @@ public class StoreData {
         while (myReader.hasNextLine())
         {
             String data = myReader.nextLine();
-            //System.out.println(data);
+            //System.out.println(line);
             loansList = data.split(",");
-            //System.out.println(loansList[0]); // checking that the array stores data
-  
+            //System.out.println(loansList[0]); // checking that the array stores line
         }
             myReader.close();
         } catch (FileNotFoundException e){
@@ -71,9 +70,9 @@ public class StoreData {
         while (myReader.hasNextLine())
         {
             String data = myReader.nextLine();
-            //System.out.println(data);
+            //System.out.println(line);
             usersList = data.split(",");
-            //System.out.println(usersList[0]); // checking that the array stores data
+            //System.out.println(usersList[0]); // checking that the array stores line
         }
             myReader.close();
         } catch (FileNotFoundException e){
@@ -87,8 +86,8 @@ public class StoreData {
      public void start(){
         
         this.readItems();
-        this.readLoans();
-        this.readUsers();
+       // this.readLoans();
+       // this.readUsers();
     }
      
 }

@@ -28,13 +28,13 @@ public class LibraryLoans {
      */
     
     private StoreData storedata = new StoreData();
-    private IssueItem issueitem = new IssueItem();
-    private StoreItems storeItems = new StoreItems();
+    //private IssueItem issueitem = new IssueItem();
+    
     
     public void start(){
         
         storedata.start();
-        storeItems.readFromFile();
+       
         //issueitem.start();
     }
     
