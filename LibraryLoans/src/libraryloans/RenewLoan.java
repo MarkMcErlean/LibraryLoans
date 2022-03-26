@@ -11,8 +11,11 @@ package libraryloans;
  * Stephen McKeown (B00    )
  */
 public class RenewLoan {
-    // read item barcode
     
+    private ValidateData validate = new ValidateData();
+    
+    // read item barcode
+   
     //if valid
     
     // increase return date by two weeks from current date for books

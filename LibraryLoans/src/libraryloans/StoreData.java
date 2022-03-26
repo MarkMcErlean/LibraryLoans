@@ -1,8 +1,5 @@
 package libraryloans;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-//import java.util.Scanner;
 import java.util.*;
 import java.io.*;
 
@@ -18,8 +15,11 @@ public class StoreData {
     private String[] loansList = {};
     private String[] usersList = {};
     
-    
+    // should probably store all of the data in objects and reference the objects in an array?
     public void readItems(){
+        
+        
+        
         try{            
             File items = new File ("ITEMS.csv");
         Scanner myReader = new Scanner(items);
@@ -30,15 +30,15 @@ public class StoreData {
             String data = myReader.nextLine();
             //System.out.println(line);
             itemsList = data.split(",");
-            //System.out.println(loansList[0]); // checking that the array stores line
+            System.out.println(loansList[0]); // checking that the array stores line
         }
             myReader.close();
         } catch (FileNotFoundException e){
             System.out.println("An error has occured.");  
             e.getStackTrace();
         }
-        
     }
+    
         
  
     public void readLoans(){

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package libraryloans;
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 import java.time.*;
 /**
@@ -28,17 +28,28 @@ public class LibraryLoans {
      */
     
     private StoreData storedata = new StoreData();
+    private CreateItems populateItems = new CreateItems();
     //private IssueItem issueitem = new IssueItem();
     
     
     public void start(){
         
-        storedata.start();
+        //storedata.start();
+        
+        
+        
+        System.out.println("What would you like to do? ");
+        System.out.println("Option 1: Issue a new loan ");
+        System.out.println("Option 2: Renew existing loan");
+        System.out.println("Option 3: Return an Item");
+        System.out.println("Option 4: View all items on loan");
+        System.out.println("Option 5: View all items held by the library");
+        System.out.println("Option 6: Quit the program");
        
         //issueitem.start();
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args)throws FileNotFoundException {
         // items, users and loans stored as lists/arrays
         LibraryLoans libLoan = new LibraryLoans();
         
