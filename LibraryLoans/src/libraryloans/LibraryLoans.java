@@ -27,24 +27,24 @@ public class LibraryLoans {
      *  as a starting point
      */
     
-    private StoreData storedata = new StoreData();
-    private CreateItems populateItems;
     
-    public LibraryLoans(){
-        try {
-        populateItems = new CreateItems();
-    } catch (FileNotFoundException badThingThatHappened){
-            System.out.println("This happened: ${badThingThatHappened}");
-    }
-}
+    private CreateItems populateItems = new CreateItems();
+    private CreateLoans populateLoans = new CreateLoans();
+    private CreateUsers populateUsers = new CreateUsers();
+    
+    //public LibraryLoans(){
+       
+//}
     //private IssueItem issueitem = new IssueItem();
     
     
     public void start(){
         
-        //storedata.start();
         
         
+        populateItems.start();
+        populateLoans.start();
+        populateUsers.start();
         
         System.out.println("What would you like to do? ");
         System.out.println("Option 1: Issue a new loan ");

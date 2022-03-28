@@ -12,27 +12,54 @@ public class Items {
     
     //Barcode,Author/Artist,Title,Type,Year,ISBN
     
-    protected String barcode;
-    protected String authorArtist;
-    protected String title;
-    protected String type;
-    protected String year;
-    protected String isbn;
+    private String barcode;
+    private String authorArtist;
+    private String title;
+    private String type;
+    private String year;
+    private String isbn;
+    
     
     // constructor to initialise the data in items
     
-    public Items(String bcode, String itemAuthor, String itemTitle, String itemType, String itemYear, String ItemISBN){
+    public Items(String barcode, String authorArtist, String title, String type, String year, String isbn){
         
-        barcode = bcode;
-        authorArtist = itemAuthor;
-        title = itemTitle;
-        type = itemType;
-        year = itemYear;
-        isbn = ItemISBN;
+        this.barcode = barcode;
+        this.authorArtist = authorArtist;
+        this.title = title;
+        this.type = type;
+        this.year = year;
+        this.isbn = isbn;
+        
     }
     
-//    @Override
-//    public String toString(){
-//        return String.format("Barcode: %bcode\r\nAuthor or Artist: %itemAuthor\r\n")
-//    }
+    public String getBarcode(){
+        return barcode;
+    }
+    
+    public String getAuthorArtist(){
+        return authorArtist;
+    }
+    
+    public String getTitle(){
+        return title;
+    }
+    
+    public String getType(){
+        return type;
+    }
+    
+    public String getYear(){
+        return year;
+    }
+    
+    public String getISBN(){
+        return isbn;
+    }
+    
+    
+    @Override
+    public String toString(){
+        return "Barcode: " + this.barcode + "\nAuthor/Artist: " + this.authorArtist + "\nTitle: " + this.title + "\nType: " + this.type +  "\nYear: " + this.year + "\nISBN: " + this.isbn + "\n\n" ;
+    }
 }

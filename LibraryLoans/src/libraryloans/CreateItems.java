@@ -12,50 +12,60 @@ import java.io.*;
  */
 public class CreateItems{
     
-    //private Items[] item = new Items[6];
+    public void start(){
+    //this.readItemsFromFile("ITEMS.csv");
+    try{
+        
+        ArrayList<Items> itemsReadFromFile = new ArrayList<Items>();
+        itemsReadFromFile = readItemsFromFile("ITEMS.csv");
+
+        //System.out.println(itemsReadFromFile); //prints the contents of the array
+        int size = itemsReadFromFile.size();
+        
+        for (int i =0; i < size; i++){
+            System.out.println(itemsReadFromFile.get(i));
+        }
+        
+        //System.out.println(itemsReadFromFile.get(3)); //test reading specific record in array
+    }catch(Exception e){
+        //todo error message
+    }
+
     
-    
-    public CreateItems() throws FileNotFoundException {
-        try {
-        Scanner scan = new Scanner(new File("ITEMS.csv"));
-       
-        //Scanner scan = new Scanner(new File("ITEMS.csv"));
-        scan.useDelimiter("\n");
-    
-        Items[] items = new Items[0];
-        while(scan.hasNext()){
-            String barcode = scan.next();
-            String authorArtist = scan.next();
-            String title = scan.next();
-            String type = scan.next();
-            String year = scan.next();
-            String isbn = scan.next();
-            
+
+    //readItemsFromFile();
+}
+
+
+public static ArrayList<Items> readItemsFromFile(String fileName) throws FileNotFoundException {
+        File file = new File("ITEMS.CSV");  //setting filename to ITEMS.csv
+        Scanner s = new Scanner(file);      //initialising scanner to scan through the file
+
+        ArrayList<Items> itemList = new ArrayList<Items>(); //
+
+        while (s.hasNextLine()){                // while the scanner has a line to read
+            String line = s.nextLine();         // set line to the next line
+
+            String[] items = line.split(",");   // split the line at each comma
+
+            String barcode = items[0];          // set barcode value to the 0th value in item array
+            String authorArtist = items[1];     // set author value to 1st in array
+            String title = items[2];            // set title to 2nd in array
+            String type = items[3];             // set type
+            String year = items[4];             // set year
+            String isbn = items[5];             // set isbn
+          
+
+            // create object of item
             Items newItem = new Items(barcode, authorArtist, title, type, year, isbn);
-            items = addItem(items, newItem);
+
+            //add the new object to the list of objects
+            itemList.add(newItem);
+            //System.out.println(items[0]); //test to see if array stores data (it does)
         }
-        
-        for (Items item : items){
-            System.out.println(item);
-        }
-        
-        } catch (Exception e){
-            System.out.println("Error found"); 
-        }
-        
-        
-    } 
-    
-    private Items readItem(String line){
-        // set delimiter to "," and read each individual item
-    }
-    
-    private static Items[] addItem(Items[] items, Items itemToAdd){
-        Items[] newItems = new Items[items.length + 1];
-        System.arraycopy(items, 0, newItems, 0, items.length);
-        newItems[newItems.length - 1] = itemToAdd;
-        
-        return newItems;
-    }
+        return itemList;                        //return statement for ArrayList
+
+  
+}
     
 }
