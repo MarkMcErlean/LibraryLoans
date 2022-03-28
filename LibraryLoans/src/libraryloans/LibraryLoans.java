@@ -28,7 +28,15 @@ public class LibraryLoans {
      */
     
     private StoreData storedata = new StoreData();
-    private CreateItems populateItems = new CreateItems();
+    private CreateItems populateItems;
+    
+    public LibraryLoans(){
+        try {
+        populateItems = new CreateItems();
+    } catch (FileNotFoundException badThingThatHappened){
+            System.out.println("This happened: ${badThingThatHappened}");
+    }
+}
     //private IssueItem issueitem = new IssueItem();
     
     
@@ -49,7 +57,7 @@ public class LibraryLoans {
         //issueitem.start();
     }
     
-    public static void main(String[] args)throws FileNotFoundException {
+    public static void main(String[] args) {
         // items, users and loans stored as lists/arrays
         LibraryLoans libLoan = new LibraryLoans();
         

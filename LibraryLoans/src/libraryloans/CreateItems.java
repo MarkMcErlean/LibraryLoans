@@ -10,12 +10,13 @@ import java.io.*;
  *
  * @author mark1
  */
-public class CreateItems {
+public class CreateItems{
     
     //private Items[] item = new Items[6];
     
     
     public CreateItems() throws FileNotFoundException {
+        try {
         Scanner scan = new Scanner(new File("ITEMS.csv"));
        
         //Scanner scan = new Scanner(new File("ITEMS.csv"));
@@ -37,7 +38,17 @@ public class CreateItems {
         for (Items item : items){
             System.out.println(item);
         }
-    }   
+        
+        } catch (Exception e){
+            System.out.println("Error found"); 
+        }
+        
+        
+    } 
+    
+    private Items readItem(String line){
+        // set delimiter to "," and read each individual item
+    }
     
     private static Items[] addItem(Items[] items, Items itemToAdd){
         Items[] newItems = new Items[items.length + 1];
