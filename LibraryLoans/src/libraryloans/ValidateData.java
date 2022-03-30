@@ -5,7 +5,6 @@
 package libraryloans;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -39,7 +38,7 @@ public class ValidateData {
             validateUsers.getUsers();
             validUsers = validateUsers.usersFromCSV;
         } 
-        //
+       
     }
 
     // checks to see if a user exists

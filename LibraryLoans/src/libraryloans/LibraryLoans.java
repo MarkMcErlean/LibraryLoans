@@ -35,6 +35,7 @@ public class LibraryLoans {
     private IssueItem issueItem = new IssueItem();
     private RenewLoan renewLoan = new RenewLoan();
     private ReturnItem returnItem = new ReturnItem();
+    private ViewItemsOnLoan viol = new ViewItemsOnLoan();
     
     //public LibraryLoans(){
        
@@ -53,12 +54,13 @@ public class LibraryLoans {
         
        
        // TEST CODE HERE //
-        validate.getItemsList();
-        validate.getUsersList();
-        issueItem.issue();
+        //validate.getItemsList();
+        //validate.getUsersList();
+        //issueItem.issue();
         //validate.checkUser();
         //validate.checkItem();
         //this.menu(); // NEEDS TO BE UPDATED
+        viol.sortItems();
        
        
         

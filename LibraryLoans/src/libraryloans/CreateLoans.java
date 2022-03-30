@@ -14,12 +14,12 @@ import java.util.Scanner;
  * @author mark1
  */
 public class CreateLoans {
-    
+    public ArrayList<Loans> loansFromCSV;
     public void getLoans(){
     //this.getLoansFromCSV("ITEMS.csv");
     try{
         
-        ArrayList<Loans> loansFromCSV = new ArrayList<Loans>();
+        loansFromCSV = new ArrayList<Loans>();
         loansFromCSV = getLoansFromCSV("LOANS.csv");
 
         //System.out.println(loansReadFromFile); //prints the contents of the array
