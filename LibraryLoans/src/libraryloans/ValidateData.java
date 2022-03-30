@@ -16,11 +16,14 @@ public class ValidateData {
     
     private CreateItems validateItems = new CreateItems();
     private CreateUsers validateUsers = new CreateUsers();
+    //private IssueItem issueItem = new IssueItem();
     private Scanner scan;
     
     
-    ArrayList<Items> validItems;
-    ArrayList<Users> validUsers;
+    protected ArrayList<Items> validItems;
+    protected ArrayList<Users> validUsers;
+    protected String uID;
+    protected String bcode;
     
     
     public void getItemsList(){
@@ -28,7 +31,7 @@ public class ValidateData {
             validateItems.getItems();
             validItems = validateItems.itemsFromCSV;
         } 
-        System.out.println(validItems.get(0));
+        //System.out.println(validItems.get(0));
     }
     
     public void getUsersList(){
@@ -40,11 +43,11 @@ public class ValidateData {
     }
 
     // checks to see if a user exists
-    public void checkUser(String user){
-            String input;
+    public boolean checkUser(){
+            //String input;
             scan = new Scanner(System.in) ; // Creates scanner instance
             System.out.println("Please enter in the User ID: ");    //instruct user
-            input = scan.next();                                    // accept input
+            uID = scan.next();                                    // accept input
 
 
             int size = validUsers.size();                   // get size of user list
@@ -55,7 +58,7 @@ public class ValidateData {
                for(int i = 0; i < size; i++){               // loop through array
                    Users u1 = validUsers.get(i);            // create temporary variable to store data at point i
                    String userID = u1.getUserID();          //create a string to hold the userID
-                   if (userID.equals(input)){               // if userID == user input
+                   if (userID.equals(uID)){               // if userID == user input
                        System.out.println("User found");    // print found
                        found = true;                        // set found flag to true
                    }    
@@ -66,15 +69,18 @@ public class ValidateData {
             } 
         if (found == false){
                 System.out.println(" User not found : Invalid userID");  // if still not found, print message 
+                return false;
+        } else{
+            return true;
         }
     }
 
     // checks to see if item exists
-    public void checkItem(String bcode){
+    public boolean checkItem(){
         String input;
             scan = new Scanner(System.in) ; // Creates scanner instance
             System.out.println("Please enter in the Barcode: ");    //instruct user
-            input = scan.next();                                    // accept input
+            bcode = scan.next();                                    // accept input
 
 
             int size = validItems.size();                   // get size of item list
@@ -85,7 +91,7 @@ public class ValidateData {
                for(int i = 0; i < size; i++){               // loop through array
                    Items i1 = validItems.get(i);            // create temporary variable to store data at point i
                    String barcode = i1.getBarcode();        //create a string to hold the barcode
-                   if (barcode.equals(input)){              // if barcode == user input
+                   if (barcode.equals(bcode)){              // if barcode == user input
                        System.out.println("Item found");    // print found
                        found = true;                        // set found flag to true
                    }    
@@ -96,9 +102,9 @@ public class ValidateData {
             } 
         if (found == false){
                 System.out.println(" Item not found : Invalid Barcode");  // if still not found, print message 
+                return false;
+        }else{
+            return true;
         }
-    }
-    
-
-    
+    }   
 }

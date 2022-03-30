@@ -22,7 +22,7 @@ public class LibraryLoans {
     /**
      * @param args the command line arguments
  
-  upon program getItems, should read from three csv files
+  upon program getItems, should read from three CSV files
   to populate application with previously stored data 
   as a starting point
      */
@@ -32,9 +32,9 @@ public class LibraryLoans {
     private CreateLoans populateLoans = new CreateLoans();
     private CreateUsers populateUsers = new CreateUsers();
     private ValidateData validate = new ValidateData();
-    private IssueItem issue = new IssueItem();
-    private RenewLoan renew = new RenewLoan();
-    private ReturnItem returnitem = new ReturnItem();
+    private IssueItem issueItem = new IssueItem();
+    private RenewLoan renewLoan = new RenewLoan();
+    private ReturnItem returnItem = new ReturnItem();
     
     //public LibraryLoans(){
        
@@ -51,23 +51,24 @@ public class LibraryLoans {
         
         //populateItems.getList();
         
-        //this.menu(); // NEEDS TO BE UPDATED
        
+       // TEST CODE HERE //
         validate.getItemsList();
         validate.getUsersList();
-        validate.checkUser();
-        validate.checkItem();
-        
+        issueItem.issue();
+        //validate.checkUser();
+        //validate.checkItem();
+        //this.menu(); // NEEDS TO BE UPDATED
        
        
         
        
-        //issueitem.getItems();
+        
     }
     
     public void menu(){
-        int[] options = {0,1,2,3,4,5,6};
-        int userInput = 0;
+        //int[] options = {0,1,2,3,4,5,6};
+        int userInput;
         
         Scanner choice = new Scanner(System.in);
         
@@ -91,19 +92,34 @@ public class LibraryLoans {
         switch (userInput){
             case 1:
                 System.out.println("option 1");
+                System.out.println("\n");
+                
+                // call issueItems code here
                 break;
             case 2: 
                 System.out.println("option 2");
+                System.out.println("\n");
+                
+                // call renewLoan code here
                 break;
             case 3:
                 System.out.println("option 3");
+                System.out.println("\n");
+                
+                // call returnItems code here
                 break;
             case 4:
                 System.out.println("option 4");
-                populateItems.printItems();
+                System.out.println("\n");
+                
+                // call populateItems.itemsOnLoan code here
+                //populateItems.printItems();
                 break;
             case 5:
                 System.out.println("option 5");
+                System.out.println("\n");
+                
+                // call populateItems.itemsHeld code here
                 break;
             case 6:
                 System.out.println("option 6");
