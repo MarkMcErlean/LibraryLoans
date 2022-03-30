@@ -21,15 +21,16 @@ public class IssueItem {
     //Multimedia loans are for a one week period
     // when item is issued, create a loan object and add to list/array of loans
     
-    private String[] itemsList = {"25832497", "240453126"}; // example strings
-    private String[] loansList = {};
-    private String[] usersList = {"b00839440", "b00842054"};
-    private Scanner scan;
-    
     private ValidateData validate = new ValidateData();
     
-//    
-//  
+    // enter barcode
+    
+    // check valid
+    
+    // if valid
+    
+    
+    
     
     // if checkItem is true and check user is true
     // create a new loan item with those details

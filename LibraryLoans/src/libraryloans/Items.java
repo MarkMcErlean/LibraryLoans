@@ -62,4 +62,14 @@ public class Items {
     public String toString(){
         return "Barcode: " + this.barcode + "\nAuthor/Artist: " + this.authorArtist + "\nTitle: " + this.title + "\nType: " + this.type +  "\nYear: " + this.year + "\nISBN: " + this.isbn + "\n\n" ;
     }
+//    public void printItems(){
+//        System.out.println("Barcode: " + barcode);
+//        System.out.println("Author/Artist: " + authorArtist);
+//        System.out.println("Title: " + title);
+//        System.out.println("Type: " + type);
+//        System.out.println("Year: " + year);
+//        System.out.println("ISBN: " + isbn);
+//    }  
+    
+    
 }

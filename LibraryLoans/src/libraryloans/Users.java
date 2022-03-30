@@ -11,7 +11,7 @@ package libraryloans;
 public class Users {
     //User_id,first_name,last_name,email
     
-    private String users;
+    private String userID;
     private String fname;
     private String lname;
     private String email;
@@ -21,18 +21,16 @@ public class Users {
     
     // constructor to initialise the data in items
     
-    public Users(String users, String fname, String lname, String email){
+    public Users(String userID, String fname, String lname, String email){
         
-        this.users = users;
+        this.userID = userID;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
-        
-        
     }
     
-    public String getUsers(){
-        return users;
+    public String getUserID(){
+        return userID;
     }
     
     public String getFname(){
@@ -52,7 +50,7 @@ public class Users {
     
     @Override
     public String toString(){
-        return "User: " + this.users + "\nFirst Name: " + this.fname + "\nLast Name: " + this.lname + "\nEmail: " + this.email + "\n\n" ;
+        return "User ID: " + this.userID + "\nFirst Name: " + this.fname + "\nLast Name: " + this.lname + "\nEmail: " + this.email + "\n\n" ;
     }
     
 }

@@ -11,33 +11,30 @@ import java.io.*;
  * @author mark1
  */
 public class CreateItems{
+    public ArrayList<Items> itemsFromCSV;
     
-    public void start(){
-    //this.readItemsFromFile("ITEMS.csv");
+    public void getItems(){
     try{
         
-        ArrayList<Items> itemsReadFromFile = new ArrayList<Items>();
-        itemsReadFromFile = readItemsFromFile("ITEMS.csv");
-
-        //System.out.println(itemsReadFromFile); //prints the contents of the array
-        int size = itemsReadFromFile.size();
-        
-        for (int i =0; i < size; i++){
-            System.out.println(itemsReadFromFile.get(i));
-        }
-        
-        //System.out.println(itemsReadFromFile.get(3)); //test reading specific record in array
+        itemsFromCSV = new ArrayList<Items>();
+        itemsFromCSV = getItemsFromCSV("ITEMS.csv");
+     
+        //System.out.println(itemsFromCSV.get(3)); //test reading specific record in array
     }catch(Exception e){
         //todo error message
     }
 
-    
-
-    //readItemsFromFile();
 }
+    // method to print all items - needs separated into two methods to print records held by library and records on loan
+    public void printItems(){
+        for (int i =0; i < itemsFromCSV.size(); i++){                      // loop through ArrayList
+        System.out.println(itemsFromCSV.get(i));      // Read objects in ArrayList while skipping record 0
+            
+        }
+    }
 
 
-public static ArrayList<Items> readItemsFromFile(String fileName) throws FileNotFoundException {
+public ArrayList<Items> getItemsFromCSV(String fileName) throws FileNotFoundException {
         File file = new File("ITEMS.CSV");  //setting filename to ITEMS.csv
         Scanner s = new Scanner(file);      //initialising scanner to scan through the file
 
@@ -67,5 +64,7 @@ public static ArrayList<Items> readItemsFromFile(String fileName) throws FileNot
 
   
 }
+
+   
     
 }

@@ -15,19 +15,19 @@ import java.util.Scanner;
  */
 public class CreateLoans {
     
-    public void start(){
-    //this.readLoansFromFile("ITEMS.csv");
+    public void getLoans(){
+    //this.getLoansFromCSV("ITEMS.csv");
     try{
         
-        ArrayList<Loans> loansReadFromFile = new ArrayList<Loans>();
-        loansReadFromFile = readLoansFromFile("LOANS.csv");
+        ArrayList<Loans> loansFromCSV = new ArrayList<Loans>();
+        loansFromCSV = getLoansFromCSV("LOANS.csv");
 
         //System.out.println(loansReadFromFile); //prints the contents of the array
-        int size = loansReadFromFile.size();                // get size of arrayList
+        int size = loansFromCSV.size();                // get size of arrayList
         
-        for (int i =0; i < size; i++){                      // loop through arrayList
-            System.out.println(loansReadFromFile.get(i));   // reading each record
-        }
+//        for (int i =0; i < size; i++){                      // loop through arrayList
+//            System.out.println(loansReadFromFile.get(i));   // reading each record
+//        }
         
         //System.out.println(loansReadFromFile.get(3)); //test reading specific record in array
     }catch(Exception e){
@@ -40,7 +40,7 @@ public class CreateLoans {
 }
 
 
-public static ArrayList<Loans> readLoansFromFile(String fileName) throws FileNotFoundException {
+public static ArrayList<Loans> getLoansFromCSV(String fileName) throws FileNotFoundException {
         File file = new File("LOANS.CSV");  //setting filename to ITEMS.csv
         Scanner s = new Scanner(file);      //initialising scanner to scan through the file
 

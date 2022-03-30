@@ -14,20 +14,21 @@ import java.util.Scanner;
  * @author mark1
  */
 public class CreateUsers {
+    public ArrayList<Users> usersFromCSV;
     
-        public void start(){
-    //this.readUsersFromFile("ITEMS.csv");
+    public void getUsers(){
+    //this.getUsersFromCSV("ITEMS.csv");
     try{
         
-        ArrayList<Users> usersReadFromFile = new ArrayList<Users>();
-        usersReadFromFile = readUsersFromFile("USERS.csv");
+        usersFromCSV = new ArrayList<Users>();
+        usersFromCSV = getUsersFromCSV("USERS.csv");
 
         //System.out.println(loansReadFromFile); //prints the contents of the array
-        int size = usersReadFromFile.size();                // get the size of arrayList
+        int size = usersFromCSV.size();                // get the size of arrayList
         
-        for (int i =0; i < size; i++){                      // Loop through arrayList
-            System.out.println(usersReadFromFile.get(i));   // print each obj
-        }
+//        for (int i =0; i < size; i++){                      // Loop through arrayList
+//            System.out.println(usersReadFromFile.get(i));   // print each obj
+//        }
         
         //System.out.println(usersReadFromFile.get(3)); //test reading specific record in array
     }catch(Exception e){
@@ -40,7 +41,7 @@ public class CreateUsers {
 }
 
 
-public static ArrayList<Users> readUsersFromFile(String fileName) throws FileNotFoundException {
+public static ArrayList<Users> getUsersFromCSV(String fileName) throws FileNotFoundException {
         File file = new File("USERS.CSV");  //setting filename to ITEMS.csv
         Scanner s = new Scanner(file);      //initialising scanner to scan through the file
 
