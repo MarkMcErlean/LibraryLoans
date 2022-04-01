@@ -4,6 +4,9 @@
  */
 package libraryloans.Objects;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author mark1
@@ -12,17 +15,18 @@ public class Loan {
     
     //Barcode,User_id,Issue_Date,Due_Date,numRenews
     
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         private String barcode;
         private String userID;
-        private String issueDate;
-        private String dueDate;
+        private LocalDate issueDate;
+        private LocalDate dueDate;
         private String numRenews;
         
     
     
     // constructor to initialise the data in items
     
-    public Loan(String barcode, String userID, String issueDate, String dueDate, String numRenews){
+    public Loan(String barcode, String userID, LocalDate issueDate, LocalDate dueDate, String numRenews){
         
         this.barcode = barcode;
         this.userID = userID;
@@ -40,12 +44,20 @@ public class Loan {
         return userID;
     }
     
-    public String getIssueDate(){
+    public LocalDate getIssueDate(){
         return issueDate;
     }
     
-    public String getDueDate(){
+    public LocalDate getDueDate(){
         return dueDate;
+    }
+    
+    public String getDueDateAsString(){
+        return dueDate.format(formatter);
+    }
+    
+    public String getIssueDateAsString(){
+        return issueDate.format(formatter);
     }
     
     public String getNumRenews(){
@@ -54,10 +66,10 @@ public class Loan {
     
    
     
-    
+    // In below to string format your date
     @Override
     public String toString(){
-        return "Barcode: " + this.barcode + "\nUser ID: " + this.userID + "\nIssue Date: " + this.issueDate + "\nDueDate: " + this.dueDate +  "\nNumber of Renews: " + this.numRenews + "\n\n" ;
+        return "Barcode: " + this.barcode + "\nUser ID: " + this.userID + "\nIssue Date: " + this.getIssueDateAsString() + "\nDueDate: " + getDueDateAsString() +  "\nNumber of Renews: " + this.numRenews + "\n\n" ;
     }
 }
 

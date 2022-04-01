@@ -12,96 +12,92 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * Created by:
  * Mark McErlean (B00842054)
  * Stephen McKeown (B00    )
  * 
- * This class will be used to create a new loan
- * librarian will supply a barcode and user ID
- * System will check if supplied details exist.
+ * This class will be used to create a new loan. Librarian supplies a Bar-code
+ * and a User ID. System checks that these details exist, and if they do, 
+ * creates a new loan record. Book loans are for a four week period, multimedia
+ * loans are for a one week period. 
  * 
  */
 public class IssueItem {
     
-    //Book loans are for a four week period
-    //Multimedia loans are for a one week period
-    // when item is issued, create a loan object and add to list/array of loans
-    private ItemReader createItems = new ItemReader();
-    private DataValidator validate = new DataValidator();
-    private String itemType;
+    private DataValidator validate;
     
+    //private String barcode;
+    private ArrayList<Item> items;
+    private ArrayList<Loan> loans;
     private Scanner scan = new Scanner(System.in);
+//    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+    
+    public IssueItem(ArrayList<Item> itemsList, ArrayList<Loan> loansList, DataValidator validator){
+        items = itemsList;
+        loans = loansList;
+        validate = validator;
+        
+    }
+    
+    public LocalDate updateDueDate(LocalDate date, long numOfWeeks){
+       return date.plusDays(numOfWeeks*7); 
+    }
+    
+    public LocalDate renew(LocalDate issueDate, String type){
+        if (type .equals("Book")){
+                return updateDueDate(issueDate, 4);
+//                returnDueDate = date.plusDays(fourWeeks);
+//                dueDate = returnDueDate.format(format);
+            } else{
+                return updateDueDate(issueDate, 1);
+//                returnDueDate = date.plusDays(week);
+//                dueDate = returnDueDate.format(format);
+            }
+        
+    }
 
     public void issue(){
-        System.out.println("Making data validity checks...");
-        
-
-        validate.getItemsList();
-        validate.getUsersList();
-       
+        System.out.println("Making data validity checks...");       
         // checks if entered barcode and userID are valid
-        if (validate.checkItem() && validate.checkUser()){  // if valid
+            LocalDate date = LocalDate.now();
+            String barcode = validate.getAndCheckBarcode();
+            String userID = validate.getAndCheckUserId();
+            String type = checkType(barcode);
+            LocalDate issueDate = date;  //todays date
+            LocalDate dueDate = renew(date, type);
+            String numRenews = "0";
             
-            
-            String barcode = validate.getAndCheckUserId();            //use supplied barcode
-            String userID = validate.requestedUserId;               //use supplied userID
-            String issueDate;                           //todays date
-            String dueDate;                             //return due date
-            String numRenews = "0";                     // num of renews set to 0
             
             // getting time logic
             
-            LocalDate date = LocalDate.now();
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-            issueDate = date.format(format);
-            long week = 7; // one week = 7 days
-            long fourWeeks = week * 4;
-            LocalDate returnDueDate;
+            // public       void    method(Param)
+            // Access-Level return  name   (input)
             
-            this.findType();
             
-            if (itemType == "Book"){
-               
-                returnDueDate = date.plusDays(fourWeeks);
-                dueDate = returnDueDate.format(format);
-            } else{
-                returnDueDate = date.plusDays(week);
-                dueDate = returnDueDate.format(format);
-            }
-            
-            //System.out.println(itemType);
-            
-            //System.out.println(barcode);
-            //System.out.println(userID);
+
             Loan newLoan = new Loan(barcode, userID, issueDate, dueDate, numRenews);
+            newLoan.getDueDateAsString();
             
-            //System.out.println(newLoan);
+            loans.add(newLoan);
             
+            System.out.println(newLoan);
+     
         }
-    }
+    
     
     // this class gets the item type of the item matching barcode used
-    private void findType(){
- 
-        int size = validate.validItems.size();              // get size of item list
-            int counter = 0;                                //set counter to 0
-            
-            boolean found = false;                          // create boolean found flag, while found is false
-            while (found == false && counter < size + 1 ){  // and counter is less than the size of array + 1
-               for(int i = 0; i < size; i++){               // loop through array
-                   Item i1 = validate.validItems.get(i);   // create temporary variable to store data at point i
-                   String barcode = i1.getBarcode();        //create a string to hold the barcode
-                   if (barcode.equals(validate.requestedBarcode)){     // if barcode == user input
-                       itemType = i1.getType();             // get the item type at this index
-                       found = true;                        // set found flag to true
-                   }    
-                   else{                                
-                       counter += 1;                        // otherwise increment counter
-                   }
-                } 
-            }
+    public String checkType(String barcode){
+        boolean validType = false;
+        String type = "INVALID";
+        do{
+          for (int index = 0; index < items.size(); index++){
+              if(barcode.equalsIgnoreCase(items.get(index).getBarcode())){
+                  type = items.get(index).getType();
+                  validType = true;
+              }
+          }
+        } while (!validType);
+        return type;
     }
-    
 }
 

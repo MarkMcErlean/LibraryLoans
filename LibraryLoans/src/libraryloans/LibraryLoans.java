@@ -38,10 +38,10 @@ public class LibraryLoans {
     private LoanReader populateLoans = new LoanReader();
     private UserReader populateUsers = new UserReader();
     private DataValidator validator;
-    private IssueItem issueItem = new IssueItem();
+    private IssueItem issueItem;
     private RenewLoan renewLoan;
     private ReturnItem returnItem = new ReturnItem();
-    private ViewItemsOnLoan viol = new ViewItemsOnLoan();
+    private ViewItems viewItems;
     private ArrayList<Item> items;
     private ArrayList<User> users;
     private ArrayList<Loan> loans;
@@ -55,8 +55,11 @@ public class LibraryLoans {
     private void start(){
         items = populateItems.getItems("ITEMS.csv");
         loans = populateLoans.getLoans("LOANS.csv");    //testing
-        users = populateUsers.getUsers("USERS.csvS");    //testing
-        //validator = new DataValidator(items, users);
+        users = populateUsers.getUsers("USERS.csv");    //testing
+        validator = new DataValidator(items, users);
+        issueItem = new IssueItem(items, loans, validator);
+        viewItems = new ViewItems(items, loans, issueItem);
+       
         
         
         //populateItems.getList();
@@ -66,18 +69,20 @@ public class LibraryLoans {
         //validate.getItemsList();
         //validate.getUsersList();
         //issueItem.issue();
-        //validate.checkUser();
-        //validate.checkItem();
+        viewItems.printItems();
+        //validator.getAndCheckUserId();
+        
         //this.menu(); // NEEDS TO BE UPDATED
         //viol.sortItems();
-       populateItems.printItems();
+       //populateItems.printItems();
        
         
        
         
     }
+    //public void menu(ArrayList<Item> itemList ){
     
-    public void menu(ArrayList<Item> itemList ){
+    public void menu(){
         //int[] options = {0,1,2,3,4,5,6};
         int userInput;
         
@@ -137,7 +142,7 @@ public class LibraryLoans {
                 break;
             default:
                 System.out.println("Please select a valid option");
-                menu();
+                this.menu();
         }
     }
     

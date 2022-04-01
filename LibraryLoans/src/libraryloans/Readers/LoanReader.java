@@ -6,6 +6,7 @@ package libraryloans.Readers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import libraryloans.Objects.Loan;
@@ -50,8 +51,9 @@ private Loan loanFromString(String loanString){
     return new Loan(
         loanContents[0], 
         loanContents[1],
-        loanContents[2],
-        loanContents[3],
+        //parse date sections of line to LocalDate
+        LocalDate.parse(loanContents[2]),
+        LocalDate.parse(loanContents[3]),
         loanContents[4]
         );
     }

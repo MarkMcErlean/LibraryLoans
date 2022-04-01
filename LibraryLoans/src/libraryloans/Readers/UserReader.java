@@ -15,17 +15,11 @@ import libraryloans.Objects.User;
  * @author mark1
  */
 public class UserReader {
-    
-    
     public ArrayList<User> usersFromCSV;
     
     public ArrayList<User> getUsers(String filename){
         return getUsersFromCSV(filename);
     }
-  
-  
-
-
 
 private ArrayList<User> getUsersFromCSV(String fileName) {
     ArrayList<User> userList = new ArrayList<User>(); 

@@ -17,15 +17,16 @@ import java.util.Scanner;
  */
 public class DataValidator {
     
-    private ItemReader validateItems = new ItemReader();
-    private UserReader validateUsers = new UserReader();
+    private ItemReader readItems = new ItemReader();
+    private UserReader readUsers = new UserReader();
     //private IssueItem issueItem = new IssueItem();
     private Scanner scan = new Scanner(System.in);
     
     
     private ArrayList<Item> validItems;
     private ArrayList<User> validUsers;
-    protected String requestedUserId;
+    //protected String requestedUserId;
+    //protected String requestedBarcode;
     
     public DataValidator(
             ArrayList<Item> itemsList,
@@ -81,36 +82,35 @@ public class DataValidator {
 //        });
 //    }
 
-    // checks to see if item exists
-    public boolean checkItem(ArrayList<Item> itemsList){
-        String input;
-         // Creates scanner instance
-        System.out.println("Please enter in the Barcode: ");    //instruct user
-        requestedBarcode = scan.next();                                    // accept input
-
-
-        int size = validItems.size();                   // get size of item list
-        int counter = 0;                                //set counter to 0
-
-        boolean found = false;                          // create boolean found flag, while found is false
-        while (found == false && counter < size + 1 ){  // and counter is less than the size of array + 1
-           for(int i = 0; i < size; i++){               // loop through array
-               Item i1 = validItems.get(i);            // create temporary variable to store data at point i
-               String barcode = i1.getBarcode();        //create a string to hold the barcode
-               if (barcode.equals(requestedBarcode)){              // if barcode == user input
-                   System.out.println("Item found");    // print found
-                   found = true;                        // set found flag to true
-               }    
-               else{                                
-                   counter += 1;                        // otherwise increment counter
-               }
-            } 
-        } 
-        if (found == false){
-                System.out.println(" Item not found : Invalid Barcode");  // if still not found, print message 
-                return false;
+public String getAndCheckBarcode(){
+    boolean valid = false;
+    String barcode;
+    do{
+        barcode = requestInput("Please enter barcode: ");
+        if (checkItem(barcode)){
+            valid = true;
         }else{
-            return true;
+        System.out.println("Invalid item, you will need to enter again.");
         }
-    }   
+    }while (!valid);
+    return barcode;
+}
+
+
+public boolean checkItem(String requestedBarcode){
+	for (int index = 0; index < validItems.size(); index++){
+		if(requestedBarcode.equalsIgnoreCase(validItems.get(index).getBarcode())){
+			System.out.println("Item found");
+			return true;
+		}
+
+	}
+	
+	System.out.println("Item not found : invalid barcode");
+	return false;
+    }
+
+
+
+
 }
