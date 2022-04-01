@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package libraryloans;
+package libraryloans.Objects;
 
 /**
  *
  * @author mark1
  */
-public class Items {
+public class Item {
     
     //Barcode,Author/Artist,Title,Type,Year,ISBN
     
@@ -22,7 +22,7 @@ public class Items {
     
     // constructor to initialise the data in items
     
-    public Items(String barcode, String authorArtist, String title, String type, String year, String isbn){
+    public Item(String barcode, String authorArtist, String title, String type, String year, String isbn){
         
         this.barcode = barcode;
         this.authorArtist = authorArtist;

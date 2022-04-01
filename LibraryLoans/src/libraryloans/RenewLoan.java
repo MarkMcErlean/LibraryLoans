@@ -11,8 +11,11 @@ package libraryloans;
  * Stephen McKeown (B00    )
  */
 public class RenewLoan {
-    
-    private ValidateData validate = new ValidateData();
+    DataValidator validator;
+    public RenewLoan(DataValidator validator){
+        this.validator = validator;
+        
+    }
     
     // read item barcode
    

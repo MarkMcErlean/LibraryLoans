@@ -3,9 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package libraryloans;
+import libraryloans.Readers.UserReader;
+import libraryloans.Readers.ItemReader;
+import libraryloans.Readers.LoanReader;
 import java.util.*;
 import java.io.*;
 import java.time.*;
+import libraryloans.Objects.Item;
+import libraryloans.Objects.User;
+import libraryloans.Objects.Loan;
 /**
  * Program is intended to store and manage details of 
  * library items currently on loan to library users according
@@ -28,14 +34,17 @@ public class LibraryLoans {
      */
     
     
-    private CreateItems populateItems = new CreateItems();
-    private CreateLoans populateLoans = new CreateLoans();
-    private CreateUsers populateUsers = new CreateUsers();
-    private ValidateData validate = new ValidateData();
+    private ItemReader populateItems = new ItemReader();
+    private LoanReader populateLoans = new LoanReader();
+    private UserReader populateUsers = new UserReader();
+    private DataValidator validator;
     private IssueItem issueItem = new IssueItem();
-    private RenewLoan renewLoan = new RenewLoan();
+    private RenewLoan renewLoan;
     private ReturnItem returnItem = new ReturnItem();
     private ViewItemsOnLoan viol = new ViewItemsOnLoan();
+    private ArrayList<Item> items;
+    private ArrayList<User> users;
+    private ArrayList<Loan> loans;
     
     //public LibraryLoans(){
        
@@ -43,11 +52,11 @@ public class LibraryLoans {
     //private IssueItem issueitem = new IssueItem();
     
     
-    public void start(){
-        populateItems.getItems();
-        populateLoans.getLoans();    //testing
-        populateUsers.getUsers();    //testing
-        
+    private void start(){
+        items = populateItems.getItems("ITEMS.csv");
+        loans = populateLoans.getLoans("LOANS.csv");    //testing
+        users = populateUsers.getUsers("USERS.csvS");    //testing
+        //validator = new DataValidator(items, users);
         
         
         //populateItems.getList();
@@ -60,15 +69,15 @@ public class LibraryLoans {
         //validate.checkUser();
         //validate.checkItem();
         //this.menu(); // NEEDS TO BE UPDATED
-        viol.sortItems();
-       
+        //viol.sortItems();
+       populateItems.printItems();
        
         
        
         
     }
     
-    public void menu(){
+    public void menu(ArrayList<Item> itemList ){
         //int[] options = {0,1,2,3,4,5,6};
         int userInput;
         

@@ -1,4 +1,7 @@
 package libraryloans;
+import libraryloans.Objects.Loan;
+import libraryloans.Objects.Item;
+import libraryloans.Readers.ItemReader;
 import java.util.Scanner;
 import java.time.*;
 import java.time.Period;
@@ -24,8 +27,8 @@ public class IssueItem {
     //Book loans are for a four week period
     //Multimedia loans are for a one week period
     // when item is issued, create a loan object and add to list/array of loans
-    private CreateItems createItems = new CreateItems();
-    private ValidateData validate = new ValidateData();
+    private ItemReader createItems = new ItemReader();
+    private DataValidator validate = new DataValidator();
     private String itemType;
     
     private Scanner scan = new Scanner(System.in);
@@ -40,8 +43,9 @@ public class IssueItem {
         // checks if entered barcode and userID are valid
         if (validate.checkItem() && validate.checkUser()){  // if valid
             
-            String barcode = validate.bcode;            //use supplied barcode
-            String userID = validate.uID;               //use supplied userID
+            
+            String barcode = validate.getAndCheckUserId();            //use supplied barcode
+            String userID = validate.requestedUserId;               //use supplied userID
             String issueDate;                           //todays date
             String dueDate;                             //return due date
             String numRenews = "0";                     // num of renews set to 0
@@ -58,6 +62,7 @@ public class IssueItem {
             this.findType();
             
             if (itemType == "Book"){
+               
                 returnDueDate = date.plusDays(fourWeeks);
                 dueDate = returnDueDate.format(format);
             } else{
@@ -69,7 +74,7 @@ public class IssueItem {
             
             //System.out.println(barcode);
             //System.out.println(userID);
-            Loans newLoan = new Loans(barcode, userID, issueDate, dueDate, numRenews);
+            Loan newLoan = new Loan(barcode, userID, issueDate, dueDate, numRenews);
             
             //System.out.println(newLoan);
             
@@ -85,9 +90,9 @@ public class IssueItem {
             boolean found = false;                          // create boolean found flag, while found is false
             while (found == false && counter < size + 1 ){  // and counter is less than the size of array + 1
                for(int i = 0; i < size; i++){               // loop through array
-                   Items i1 = validate.validItems.get(i);   // create temporary variable to store data at point i
+                   Item i1 = validate.validItems.get(i);   // create temporary variable to store data at point i
                    String barcode = i1.getBarcode();        //create a string to hold the barcode
-                   if (barcode.equals(validate.bcode)){     // if barcode == user input
+                   if (barcode.equals(validate.requestedBarcode)){     // if barcode == user input
                        itemType = i1.getType();             // get the item type at this index
                        found = true;                        // set found flag to true
                    }    

@@ -4,6 +4,10 @@
  */
 package libraryloans;
 
+import libraryloans.Objects.Loan;
+import libraryloans.Objects.Item;
+import libraryloans.Readers.LoanReader;
+import libraryloans.Readers.ItemReader;
 import java.util.ArrayList;
 
 /**
@@ -13,13 +17,13 @@ import java.util.ArrayList;
  * Stephen McKeown (B00    )
  */
 public class ViewItemsOnLoan {
-    private CreateItems createItems = new CreateItems();
-    private CreateLoans createLoans = new CreateLoans();
+    private ItemReader createItems = new ItemReader();
+    private LoanReader createLoans = new LoanReader();
     
-    protected ArrayList<Items> allItems;
-    protected ArrayList<Loans> allLoans;
-    protected ArrayList<Items> currentlyLoaned;
-    protected ArrayList<Items> currentlyHeld;
+    protected ArrayList<Item> allItems;
+    protected ArrayList<Loan> allLoans;
+    protected ArrayList<Item> currentlyLoaned;
+    protected ArrayList<Item> currentlyHeld;
    
     
     
@@ -44,8 +48,8 @@ public class ViewItemsOnLoan {
         this.getItemsList();
         this.getLoansList();
         
-        currentlyLoaned = new ArrayList<Items>();
-        currentlyHeld = new ArrayList<Items>();
+        currentlyLoaned = new ArrayList<Item>();
+        currentlyHeld = new ArrayList<Item>();
         
         // create two loops
         int counter = 0;                                    //set counter to 0
@@ -53,10 +57,10 @@ public class ViewItemsOnLoan {
                                       
         while (counter < size + 1 ){      // and counter is less than the size of array + 1
            for(int i = 0; i < size; i++){                   // loop through array
-               Items i1 = allItems.get(i);                  // create temporary variable to store data at point i
+               Item i1 = allItems.get(i);                  // create temporary variable to store data at point i
                String barcode = i1.getBarcode();            //create a string to hold the userID
                for (int j = 0; j < allLoans.size(); j++){
-                    Loans j1 = allLoans.get(j);
+                    Loan j1 = allLoans.get(j);
                     String loanBarcode = j1.getBarcode();
                     if (loanBarcode.equals(barcode)){       // if barcode is found in loans
                     currentlyLoaned.add(i1);                // add to currentlyLoaned list

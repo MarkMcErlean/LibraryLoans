@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package libraryloans;
+package libraryloans.Objects;
 
 /**
  *
  * @author mark1
  */
-public class Loans {
+public class Loan {
     
     //Barcode,User_id,Issue_Date,Due_Date,numRenews
     
@@ -22,7 +22,7 @@ public class Loans {
     
     // constructor to initialise the data in items
     
-    public Loans(String barcode, String userID, String issueDate, String dueDate, String numRenews){
+    public Loan(String barcode, String userID, String issueDate, String dueDate, String numRenews){
         
         this.barcode = barcode;
         this.userID = userID;
