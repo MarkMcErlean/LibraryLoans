@@ -42,7 +42,7 @@ public class LibraryLoans {
     private RenewLoan renewLoan;
     private ReturnItem returnItem = new ReturnItem();
     private ViewItems viewItems;
-    private ArrayList<Item> items;
+    private ArrayList<Item> items;  // <-- make sure this is at the top of the code 
     private ArrayList<User> users;
     private ArrayList<Loan> loans;
     
@@ -57,7 +57,7 @@ public class LibraryLoans {
         loans = populateLoans.getLoans("LOANS.csv");    //testing
         users = populateUsers.getUsers("USERS.csv");    //testing
         validator = new DataValidator(items, users);
-        issueItem = new IssueItem(items, loans, validator);
+        issueItem = new IssueItem(items, loans, validator);  //<-- this feeds the items list to the class issue item (i'll comment there too)
         viewItems = new ViewItems(items, loans, issueItem);
        
         

@@ -60,7 +60,14 @@ public class Item {
     
     @Override
     public String toString(){
-        return "Barcode: " + this.barcode + "\nAuthor/Artist: " + this.authorArtist + "\nTitle: " + this.title + "\nType: " + this.type +  "\nYear: " + this.year + "\nISBN: " + this.isbn + "\n\n" ;
+        return "Barcode: " + this.barcode
+                + "\nAuthor/Artist: " 
+                + this.authorArtist 
+                + "\nTitle: " + this.title 
+                + "\nType: " + this.type 
+                +  "\nYear: " + this.year 
+                + "\nISBN: " + this.isbn 
+                + "\n\n" ;
     }
 //    public void printItems(){
 //        System.out.println("Barcode: " + barcode);

@@ -27,13 +27,13 @@ public class IssueItem {
     private DataValidator validate;
     
     //private String barcode;
-    private ArrayList<Item> items;
+    private ArrayList<Item> items; //<-- again, this needs to be at the top of the class
     private ArrayList<Loan> loans;
     private Scanner scan = new Scanner(System.in);
 //    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     
     public IssueItem(ArrayList<Item> itemsList, ArrayList<Loan> loansList, DataValidator validator){
-        items = itemsList;
+        items = itemsList;      //<-- this bit is where it accepts the passing of the items list
         loans = loansList;
         validate = validator;
         
