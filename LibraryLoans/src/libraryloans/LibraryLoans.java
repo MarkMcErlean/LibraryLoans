@@ -69,7 +69,8 @@ public class LibraryLoans {
         //validate.getItemsList();
         //validate.getUsersList();
         //issueItem.issue();
-        viewItems.printItems();
+        //viewItems.printItemsOnLoan();
+        viewItems.printItemsInLibrary();
         //validator.getAndCheckUserId();
         
         //this.menu(); // NEEDS TO BE UPDATED
@@ -109,7 +110,7 @@ public class LibraryLoans {
             case 1:
                 System.out.println("option 1");
                 System.out.println("\n");
-                
+                issueItem.issue();
                 // call issueItems code here
                 break;
             case 2: 
@@ -128,12 +129,16 @@ public class LibraryLoans {
                 System.out.println("option 4");
                 System.out.println("\n");
                 
+                viewItems.printItemsOnLoan();
+                
                 // call populateItems.itemsOnLoan code here
                 //populateItems.printItems();
                 break;
             case 5:
                 System.out.println("option 5");
                 System.out.println("\n");
+                
+                viewItems.printItemsInLibrary();
                 
                 // call populateItems.itemsHeld code here
                 break;

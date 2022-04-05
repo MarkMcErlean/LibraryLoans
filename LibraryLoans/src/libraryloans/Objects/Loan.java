@@ -69,7 +69,15 @@ public class Loan {
     // In below to string format your date
     @Override
     public String toString(){
-        return "Barcode: " + this.barcode + "\nUser ID: " + this.userID + "\nIssue Date: " + this.getIssueDateAsString() + "\nDueDate: " + getDueDateAsString() +  "\nNumber of Renews: " + this.numRenews + "\n\n" ;
+        return "Barcode: " 
+                + this.barcode 
+                + "\nUser ID: " 
+                + this.userID + "\nIssue Date: " 
+                + this.getIssueDateAsString() 
+                + "\nDueDate: " + getDueDateAsString() 
+                +  "\nNumber of Renews: " 
+                + this.numRenews 
+                + "\n\n" ;
     }
 }
 
