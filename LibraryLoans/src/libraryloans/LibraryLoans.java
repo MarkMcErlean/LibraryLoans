@@ -38,7 +38,7 @@ public class LibraryLoans {
     private LoanReader populateLoans = new LoanReader();
     private UserReader populateUsers = new UserReader();
     private DataValidator validator;
-    private IssueItem issueItem;
+    private loanManager manageLoan;
     private RenewLoan renewLoan;
     private ReturnItem returnItem = new ReturnItem();
     private ViewItems viewItems;
@@ -49,7 +49,7 @@ public class LibraryLoans {
     //public LibraryLoans(){
        
 //}
-    //private IssueItem issueitem = new IssueItem();
+    //private loanManager issueitem = new loanManager();
     
     
     private void start(){
@@ -57,8 +57,9 @@ public class LibraryLoans {
         loans = populateLoans.getLoans("LOANS.csv");    //testing
         users = populateUsers.getUsers("USERS.csv");    //testing
         validator = new DataValidator(items, users);
-        issueItem = new IssueItem(items, loans, validator);  //<-- this feeds the items list to the class issue item (i'll comment there too)
-        viewItems = new ViewItems(items, loans, issueItem);
+        manageLoan = new loanManager(items, loans, validator);  //<-- this feeds the items list to the class issue item (i'll comment there too)
+        viewItems = new ViewItems(items, loans, manageLoan);
+        renewLoan = new RenewLoan(items, loans, validator, manageLoan);
        
         
         
@@ -70,7 +71,8 @@ public class LibraryLoans {
         //validate.getUsersList();
         //issueItem.issue();
         //viewItems.printItemsOnLoan();
-        viewItems.printItemsInLibrary();
+        //viewItems.printItemsInLibrary();
+        renewLoan.extendLoan();
         //validator.getAndCheckUserId();
         
         //this.menu(); // NEEDS TO BE UPDATED
@@ -110,7 +112,7 @@ public class LibraryLoans {
             case 1:
                 System.out.println("option 1");
                 System.out.println("\n");
-                issueItem.issue();
+                manageLoan.issue();
                 // call issueItems code here
                 break;
             case 2: 
@@ -131,16 +133,13 @@ public class LibraryLoans {
                 
                 viewItems.printItemsOnLoan();
                 
-                // call populateItems.itemsOnLoan code here
-                //populateItems.printItems();
                 break;
             case 5:
                 System.out.println("option 5");
                 System.out.println("\n");
-                
+                // currently broken - gives all records instead of just those in 
+                // stock
                 viewItems.printItemsInLibrary();
-                
-                // call populateItems.itemsHeld code here
                 break;
             case 6:
                 System.out.println("option 6");

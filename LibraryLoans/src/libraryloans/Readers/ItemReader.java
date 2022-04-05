@@ -38,7 +38,7 @@ private ArrayList<Item> getItemsFromCSV(String fileName) {
         */
 
         //String headerLine = lineScanner.nextLine();
-        
+        String headerLine = lineScanner.nextLine();
         while (lineScanner.hasNextLine()){
             String line = lineScanner.nextLine();
             //add the new object to the list of objects

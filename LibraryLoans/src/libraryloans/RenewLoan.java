@@ -4,6 +4,11 @@
  */
 package libraryloans;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import libraryloans.Objects.Item;
+import libraryloans.Objects.Loan;
+
 /**
  *
  * Created by:
@@ -11,22 +16,39 @@ package libraryloans;
  * Stephen McKeown (B00    )
  */
 public class RenewLoan {
-    DataValidator validator;
-    public RenewLoan(DataValidator validator){
-        this.validator = validator;
-        
+    private DataValidator validate;
+    private ArrayList<Item> items; 
+    private ArrayList<Loan> loans;
+    private loanManager manageLoan;
+    
+    public RenewLoan(ArrayList<Item> itemsList, ArrayList<Loan> loansList,
+            DataValidator validator, loanManager issueItem){
+        validate = validator;
+        items = itemsList;
+        loans = loansList; 
+        manageLoan = issueItem;
     }
     
-    // read item barcode
-   
-    //if valid
-    
-    // increase return date by two weeks from current date for books
-    
-    // increase return date by one week from current date for multimedia items
-    
-    // Number of renews increased by one 
-    
+    public void extendLoan(){
+        String barcode = validate.getAndCheckBarcode();
+        String userID = validate.getAndCheckUserId();
+        String type = manageLoan.checkType(barcode);
+        LocalDate issueDate = LocalDate.now();
+        LocalDate dueDate = manageLoan.renew(issueDate, type);
+
+        for (int index = 0; index < loans.size(); index++){
+            if (barcode.equals(loans.get(index).getBarcode()) && userID.equals(loans.get(index).getUserID())){
+                loans.get(index).setDueDate(dueDate);
+            }
+        }
+        
+        
+        
+        //System.out.println("Date updated: ");
+        //System.out.println("renewed date is: " + issueDate);
+            
+        }
+
     // Maximum number of renews is three (books)
     
     // Maximum number of renews is two (multimedia item)

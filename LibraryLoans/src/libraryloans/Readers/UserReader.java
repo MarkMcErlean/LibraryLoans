@@ -11,7 +11,8 @@ import java.util.Scanner;
 import libraryloans.Objects.User;
 
 /**
- *
+ *  Reads data from a file and puts it into the object "User"
+ * 
  * @author mark1
  */
 public class UserReader {
@@ -31,7 +32,7 @@ private ArrayList<User> getUsersFromCSV(String fileName) {
 /* While the file has more lines, take the next line and convert to an 
 loan, then add to the list of loans.
 */
-
+        String headerLine = lineScanner.nextLine();
         while (lineScanner.hasNextLine()){
         String line = lineScanner.nextLine();
 //add the new object to the list of objects

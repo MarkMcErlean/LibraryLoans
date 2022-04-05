@@ -20,14 +20,14 @@ public class Loan {
         private String userID;
         private LocalDate issueDate;
         private LocalDate dueDate;
-        private String numRenews;
+        private int numRenews;
         
     
     
     // constructor to initialise the data in items
     
-    public Loan(String barcode, String userID, LocalDate issueDate, LocalDate dueDate, String numRenews){
-        
+    public Loan(String barcode, String userID, LocalDate issueDate, LocalDate dueDate, int numRenews){
+        super();
         this.barcode = barcode;
         this.userID = userID;
         this.issueDate = issueDate;
@@ -48,8 +48,22 @@ public class Loan {
         return issueDate;
     }
     
+    public void setIssueDate(LocalDate issueDate){
+        this.issueDate = issueDate;
+    }
+    
     public LocalDate getDueDate(){
         return dueDate;
+    }
+    
+    public void setDueDate(LocalDate dueDate){
+        if (this.numRenews <= 2){
+            this.dueDate = dueDate;
+            this.numRenews ++; 
+        }else{
+            System.out.println("Maximum number of renewals reached: renewal failed.");
+        }
+        
     }
     
     public String getDueDateAsString(){
@@ -60,7 +74,8 @@ public class Loan {
         return issueDate.format(formatter);
     }
     
-    public String getNumRenews(){
+    
+    public int getNumRenews(){
         return numRenews;
     }
     

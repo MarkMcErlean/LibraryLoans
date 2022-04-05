@@ -68,7 +68,7 @@ private Loan loanFromString(String loanString){
         //parse date sections of line to LocalDate
         LocalDate.parse(loanContents[2], formatter),
         LocalDate.parse(loanContents[3], formatter),
-        loanContents[4]
+        Integer.parseInt(loanContents[4])
         );
     }
 }

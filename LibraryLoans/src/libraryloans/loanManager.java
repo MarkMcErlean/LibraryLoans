@@ -22,21 +22,19 @@ import java.util.List;
  * loans are for a one week period. 
  * 
  */
-public class IssueItem {
+public class loanManager {
     
     private DataValidator validate;
     
     //private String barcode;
-    private ArrayList<Item> items; //<-- again, this needs to be at the top of the class
+    private ArrayList<Item> items; 
     private ArrayList<Loan> loans;
     private Scanner scan = new Scanner(System.in);
-//    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/YYYY");
     
-    public IssueItem(ArrayList<Item> itemsList, ArrayList<Loan> loansList, DataValidator validator){
-        items = itemsList;      //<-- this bit is where it accepts the passing of the items list
+    public loanManager(ArrayList<Item> itemsList, ArrayList<Loan> loansList, DataValidator validator){
+        items = itemsList;
         loans = loansList;
-        validate = validator;
-        
+        validate = validator; 
     }
     
     public LocalDate updateDueDate(LocalDate date, long numOfWeeks){
@@ -46,12 +44,8 @@ public class IssueItem {
     public LocalDate renew(LocalDate issueDate, String type){
         if (type .equals("Book")){
                 return updateDueDate(issueDate, 4);
-//                returnDueDate = date.plusDays(fourWeeks);
-//                dueDate = returnDueDate.format(format);
             } else{
                 return updateDueDate(issueDate, 1);
-//                returnDueDate = date.plusDays(week);
-//                dueDate = returnDueDate.format(format);
             }
         
     }
@@ -65,15 +59,11 @@ public class IssueItem {
             String type = checkType(barcode);
             LocalDate issueDate = date;  //todays date
             LocalDate dueDate = renew(date, type);
-            String numRenews = "0";
-            
-            
-            // getting time logic
+            int numRenews = 0;
+
             
             // public       void    method(Param)
             // Access-Level return  name   (input)
-            
-            
 
             Loan newLoan = new Loan(barcode, userID, issueDate, dueDate, numRenews);
             newLoan.getDueDateAsString();
