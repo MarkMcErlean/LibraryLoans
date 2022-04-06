@@ -10,6 +10,10 @@ import java.util.Scanner;
 import libraryloans.Objects.User;
 
 /**
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  *  Reads data from a file and puts it into the object "User"
  * 
  * @author mark1

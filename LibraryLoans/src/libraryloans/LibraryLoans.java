@@ -3,6 +3,7 @@ package libraryloans;
 import libraryloans.Readers.UserReader;
 import libraryloans.Readers.ItemReader;
 import libraryloans.Readers.LoanReader;
+import libraryloans.Writers.LoanWriter;
 import java.util.*;
 import libraryloans.Objects.Item;
 import libraryloans.Objects.User;
@@ -12,26 +13,18 @@ import libraryloans.Objects.Loan;
  * library items currently on loan to library users according
  * to a list of functional requirements
  * 
- * CONSOLE INTERFACE ONLY
+ * CONSOLE INTERFACE 
  * 
  * Created by:
  * Mark McErlean (B00842054)
- * Stephen McKeown (B00    )
+ * Stephen McKeown (B00839440)
  */
 public class LibraryLoans {
-
-    /**
-     *
- 
-  upon program getItems, should read from three CSV files
-  to populate application with previously stored data 
-  as a starting point
-     */
-    
     
     private final ItemReader populateItems = new ItemReader();
     private final LoanReader populateLoans = new LoanReader();
     private final UserReader populateUsers = new UserReader();
+    private LoanWriter loanWriter;
     private loanManager manageLoan;
     private RenewLoan renewLoan;
     private ReturnItem returnItem;
@@ -40,11 +33,7 @@ public class LibraryLoans {
     private ArrayList<User> users;
     private ArrayList<Loan> loans;
 
-
-//}
-
-    
-    
+  
     private void start(){
         items = populateItems.getItems("src\\ITEMS.csv");
         loans = populateLoans.getLoans("src\\LOANS.csv");
@@ -52,32 +41,14 @@ public class LibraryLoans {
         DataValidator validator = new DataValidator(items, users);
         manageLoan = new loanManager(items, loans, validator);
         viewItems = new ViewItems(items, loans);
-        renewLoan = new RenewLoan(loans, validator, manageLoan);
+        renewLoan = new RenewLoan(loans, items, validator, manageLoan);
         returnItem = new ReturnItem(loans, validator);
-       
+        loanWriter = new LoanWriter(loans);
         this.menu();
-        
-        //populateItems.getList();
-        
-       
-       // TEST CODE HERE //
-        //validate.getItemsList();
-        //validate.getUsersList();
-        //issueItem.issue();
-        //viewItems.printItemsOnLoan();
-        //viewItems.printItemsInLibrary();
-        //renewLoan.extendLoan();
-        //returnItem.returnLoanItem();
-        //validator.getAndCheckUserId();
-        
-        //this.menu(); // NEEDS TO BE UPDATED
-        //viol.sortItems();
-       //populateItems.printItems();
-    
+
     }
     
     private void menu(){
-        //int[] options = {0,1,2,3,4,5,6};
         boolean keepGoing = true;
         int userInput;
         
@@ -133,6 +104,7 @@ public class LibraryLoans {
                 }
                 case 6 -> {
                     System.out.println("Option 6: Saving any changes... Exiting the program...");
+                    loanWriter.writeToFile("src\\LOANS.csv");
                     keepGoing = false;
                 }
                 default -> {

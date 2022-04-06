@@ -5,8 +5,10 @@
 package libraryloans.Objects;
 
 /**
- *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  */
 public class multimedia extends Item {
     
@@ -28,7 +30,10 @@ public class multimedia extends Item {
     public String artist(){
         return artist;
     }
- 
+    
+//     public void getMaxRenews(){
+//    int maxRenews = 2;
+//    }
     
     @Override
     public String toString(){

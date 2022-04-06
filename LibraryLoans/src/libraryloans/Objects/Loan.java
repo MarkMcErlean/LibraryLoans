@@ -8,8 +8,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
  *
- * @author mark1
  */
 public class Loan {
     
@@ -77,6 +79,10 @@ public class Loan {
     
     public int getNumRenews(){
         return numRenews;
+    }
+    
+    public String getNumRenewsAsString(){
+        return String.valueOf(numRenews);
     }
     
    

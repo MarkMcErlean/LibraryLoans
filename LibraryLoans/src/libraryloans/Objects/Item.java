@@ -5,8 +5,10 @@
 package libraryloans.Objects;
 
 /**
- *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  */
 public class Item {
     
@@ -55,6 +57,16 @@ public class Item {
     
     public String getISBN(){
         return isbn;
+    }
+    
+    public int getMaxRenews(){
+        int maxRenews = 1;
+        if( this.type.equals("Book")){
+            maxRenews = 3;
+        }else{
+            maxRenews = 2;
+        }
+        return maxRenews;
     }
     
     

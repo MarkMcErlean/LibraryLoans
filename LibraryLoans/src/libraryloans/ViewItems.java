@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * Created by:
  * Mark McErlean (B00842054)
- * Stephen McKeown (B00    )
+ * Stephen McKeown (B00839440)
  */
 public class ViewItems {
     private final ArrayList<Item> items;

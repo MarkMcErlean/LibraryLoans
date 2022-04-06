@@ -6,7 +6,10 @@ package libraryloans.Objects;
 
 /**
  *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  */
 public class book extends Item {
     
@@ -25,6 +28,10 @@ public class book extends Item {
     public String artist(){
         return author;
     }
+    
+//    public void getMaxRenews(){
+//    int maxRenews = 3;
+//    }
     
     @Override
     public String toString(){

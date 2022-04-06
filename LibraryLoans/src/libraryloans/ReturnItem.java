@@ -12,7 +12,7 @@ import libraryloans.Objects.Loan;
  *
  * Created by:
  * Mark McErlean (B00842054)
- * Stephen McKeown (B00    )
+ * Stephen McKeown (B00839440)
  */
 public class ReturnItem {
     
@@ -33,7 +33,7 @@ public class ReturnItem {
         String userId = validate.getAndCheckUserId();
         LocalDate today = LocalDate.now();
 
-
+        // for each oject of loan in Loans array
         for (Loan loan : loans) {
             if (loan.getBarcode().equals(barcode) &&
                     loan.getUserID().equals(userId)) {

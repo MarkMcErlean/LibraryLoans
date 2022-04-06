@@ -1,8 +1,10 @@
 package libraryloans.Objects;
 
 /**
- *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  */
 public class User {
     //User_id,first_name,last_name,email

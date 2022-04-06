@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by:
  * Mark McErlean (B00842054)
- * Stephen McKeown (B00    )
+ * Stephen McKeown (B00839440)
  * 
  * This class will be used to create a new loan. Librarian supplies a Bar-code
  * and a User ID. System checks that these details exist, and if they do, 

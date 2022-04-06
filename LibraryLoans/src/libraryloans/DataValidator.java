@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ *  Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  * class to be called to validate data integrity
  * 
  */

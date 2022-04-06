@@ -13,8 +13,10 @@ import java.util.Scanner;
 import libraryloans.Objects.Loan;
 
 /**
- *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  */
 public class LoanReader {
     public ArrayList<Loan> getLoans(String filename){

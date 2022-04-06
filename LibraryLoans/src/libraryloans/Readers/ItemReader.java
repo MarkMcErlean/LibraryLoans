@@ -6,10 +6,14 @@ package libraryloans.Readers;
 import java.util.*;
 import java.io.*;
 import libraryloans.Objects.Item;
+import libraryloans.Objects.book;
+import libraryloans.Objects.multimedia;
 
 /**
- *
- * @author mark1
+ * Created by:
+ * Mark McErlean (B00842054)
+ * Stephen McKeown (B00839440)
+ * 
  */
 public class ItemReader{
     public ArrayList<Item> getItems(String filename){
@@ -54,8 +58,8 @@ private ArrayList<Item> getItemsFromCSV(String fileName) {
 **/
 private Item itemFromString(String itemString) {
             String[] itemContents = itemString.split(",");   // split the line at each comma
-
-            return new Item(
+            if (itemContents[1] .equalsIgnoreCase("Book")){
+            return new book(
                 itemContents[0], 
                 itemContents[1],
                 itemContents[2],
@@ -63,8 +67,26 @@ private Item itemFromString(String itemString) {
                 itemContents[4],
                 itemContents[5]
             );
+            }else if (itemContents[1].equalsIgnoreCase("Multimedia")){
+                return new multimedia(
+                itemContents[0], 
+                itemContents[1],
+                itemContents[2],
+                itemContents[3],
+                itemContents[4],
+                itemContents[5]
+            );
+            }else{
+                return new Item(
+                itemContents[0], 
+                itemContents[1],
+                itemContents[2],
+                itemContents[3],
+                itemContents[4],
+                itemContents[5]
+            );
+            }       
 }
-
    
     
 }
