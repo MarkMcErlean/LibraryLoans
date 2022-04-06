@@ -6,7 +6,6 @@ package libraryloans;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import libraryloans.Objects.Item;
 import libraryloans.Objects.Loan;
 
 /**
@@ -17,14 +16,12 @@ import libraryloans.Objects.Loan;
  */
 public class RenewLoan {
     private final DataValidator validate;
-    private final ArrayList<Item> items;
     private final ArrayList<Loan> loans;
     private final loanManager manageLoan;
     
-    public RenewLoan(ArrayList<Item> itemsList, ArrayList<Loan> loansList,
+    public RenewLoan(ArrayList<Loan> loansList,
             DataValidator validator, loanManager issueItem){
         validate = validator;
-        items = itemsList;
         loans = loansList; 
         manageLoan = issueItem;
     }
@@ -36,16 +33,11 @@ public class RenewLoan {
         LocalDate issueDate = LocalDate.now();
         LocalDate dueDate = manageLoan.renew(issueDate, type);
 
-        for (int index = 0; index < loans.size(); index++){
-            if (barcode.equals(loans.get(index).getBarcode()) && userID.equals(loans.get(index).getUserID())){
-                loans.get(index).setDueDate(dueDate);
+        for (Loan loan : loans) {
+            if (barcode.equals(loan.getBarcode()) && userID.equals(loan.getUserID())) {
+                loan.setDueDate(dueDate);
             }
         }
-        
-        
-        
-        //System.out.println("Date updated: ");
-        //System.out.println("renewed date is: " + issueDate);
             
         }
 

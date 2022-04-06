@@ -17,15 +17,9 @@ import libraryloans.Objects.Loan;
  * @author mark1
  */
 public class LoanReader {
-    
-    public ArrayList<Loan> loansFromCSV;
-    
     public ArrayList<Loan> getLoans(String filename){
         return getLoansFromCSV(filename);
     }
-      
-    //readItemsFromFile();
-
 
 private ArrayList<Loan> getLoansFromCSV(String fileName){
         ArrayList<Loan> loanList = new ArrayList<Loan>();
@@ -51,17 +45,8 @@ private ArrayList<Loan> getLoansFromCSV(String fileName){
 private Loan loanFromString(String loanString){
     String[] loanContents = loanString.split(",");
     
-//    String barcode = loanContents[0];
-//    String userID = loanContents[1];
-//    String dateString = loanContents[2];
-//    String renewDateString = loanContents[3];
-//    String numRenews = loanContents[4];
-    
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//    
-//    LocalDate dateDate = LocalDate.parse(dateString, formatter);
-    
-        
+
     return new Loan(
         loanContents[0], 
         loanContents[1],

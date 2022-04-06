@@ -36,24 +36,24 @@ public class LibraryLoans {
     private RenewLoan renewLoan;
     private ReturnItem returnItem;
     private ViewItems viewItems;
-    private ArrayList<Item> items;  // <-- make sure this is at the top of the code
+    private ArrayList<Item> items;
     private ArrayList<User> users;
     private ArrayList<Loan> loans;
 
-       
+
 //}
 
     
     
     private void start(){
         items = populateItems.getItems("src\\ITEMS.csv");
-        loans = populateLoans.getLoans("src\\LOANS.csv");    //testing
-        users = populateUsers.getUsers("src\\USERS.csv");    //testing
+        loans = populateLoans.getLoans("src\\LOANS.csv");
+        users = populateUsers.getUsers("src\\USERS.csv");
         DataValidator validator = new DataValidator(items, users);
-        manageLoan = new loanManager(items, loans, validator);  //<-- this feeds the items list to the class issue item (I'll comment there too)
-        viewItems = new ViewItems(items, loans, manageLoan);
-        renewLoan = new RenewLoan(items, loans, validator, manageLoan);
-        returnItem = new ReturnItem(items, loans, validator, manageLoan);
+        manageLoan = new loanManager(items, loans, validator);
+        viewItems = new ViewItems(items, loans);
+        renewLoan = new RenewLoan(loans, validator, manageLoan);
+        returnItem = new ReturnItem(loans, validator);
        
         this.menu();
         

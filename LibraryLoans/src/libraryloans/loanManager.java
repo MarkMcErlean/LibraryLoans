@@ -1,15 +1,9 @@
 package libraryloans;
 import libraryloans.Objects.Loan;
 import libraryloans.Objects.Item;
-import libraryloans.Readers.ItemReader;
-import java.util.Scanner;
 import java.time.*;
-import java.time.Period;
-import java.io.*;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 /**
  * Created by:
@@ -18,8 +12,8 @@ import java.util.List;
  * 
  * This class will be used to create a new loan. Librarian supplies a Bar-code
  * and a User ID. System checks that these details exist, and if they do, 
- * creates a new loan record. Book loans are for a four week period, multimedia
- * loans are for a one week period. 
+ * creates a new loan record. Book loans are for a four-week period, multimedia
+ * loans are for a one-week period.
  * 
  */
 public class loanManager {
@@ -29,7 +23,6 @@ public class loanManager {
     //private String barcode;
     private final ArrayList<Item> items;
     private final ArrayList<Loan> loans;
-    private final Scanner scan = new Scanner(System.in);
     
     public loanManager(ArrayList<Item> itemsList, ArrayList<Loan> loansList, DataValidator validator){
         items = itemsList;
@@ -53,12 +46,12 @@ public class loanManager {
     public void issue(){
         System.out.println("Making data validity checks...");       
         // checks if entered barcode and userID are valid
-            LocalDate date = LocalDate.now();
+            //LocalDate date = LocalDate.now();
             String barcode = validate.getAndCheckBarcode();
             String userID = validate.getAndCheckUserId();
             String type = checkType(barcode);
-            LocalDate issueDate = date;  //todays date
-            LocalDate dueDate = renew(date, type);
+            LocalDate issueDate = LocalDate.now();
+            LocalDate dueDate = renew(issueDate, type);
             int numRenews = 0;
 
             
@@ -80,12 +73,12 @@ public class loanManager {
         boolean validType = false;
         String type = "INVALID";
         do{
-          for (int index = 0; index < items.size(); index++){
-              if(barcode.equalsIgnoreCase(items.get(index).getBarcode())){
-                  type = items.get(index).getType();
-                  validType = true;
-              }
-          }
+            for (Item item : items) {
+                if (barcode.equalsIgnoreCase(item.getBarcode())) {
+                    type = item.getType();
+                    validType = true;
+                }
+            }
         } while (!validType);
         return type;
     }

@@ -12,18 +12,10 @@ import libraryloans.Objects.Item;
  * @author mark1
  */
 public class ItemReader{
-    public ArrayList<Item> itemsFromCSV;
-    
     public ArrayList<Item> getItems(String filename){
         return getItemsFromCSV(filename);
 }
-//    // method to print all items - needs separated into two methods to print records held by library and records on loan
-//    public void printItems(){
-//        for (int i =0; i < itemsFromCSV.size(); i++){                      // loop through ArrayList
-//        System.out.println(itemsFromCSV.get(i));      // Read objects in ArrayList while skipping record 0
-//            
-//        }
-//    }
+
 
 
 private ArrayList<Item> getItemsFromCSV(String fileName) {

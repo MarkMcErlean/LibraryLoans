@@ -17,12 +17,9 @@ public class DataValidator {
 
     //private IssueItem issueItem = new IssueItem();
     private final Scanner scan = new Scanner(System.in);
-    
-    
+
     private final ArrayList<Item> validItems;
     private final ArrayList<User> validUsers;
-    //protected String requestedUserId;
-    //protected String requestedBarcode;
     
     public DataValidator(
             ArrayList<Item> itemsList,
@@ -64,19 +61,7 @@ public class DataValidator {
             System.out.println(" User not found : Invalid userID");  // if still not found, print message 
             return false;
     }
-    
-//    public boolean CheckUsers3(){
-//        requestedUserId = requestInput("Please enter in the User ID: ");
-//        
-//        validUsers.forEach((User user) -> { 
-//            if (requestedUserId.equalsIgnoreCase(user.getUserID())) {
-//                System.out.println("User found");
-//                return true;
-//            }
-//            System.out.println(" User not found : Invalid userID");
-//            return false; 
-//        });
-//    }
+
 
 public String getAndCheckBarcode(){
     boolean valid = false;

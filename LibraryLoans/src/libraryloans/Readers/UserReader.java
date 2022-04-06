@@ -5,7 +5,6 @@
 package libraryloans.Readers;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import libraryloans.Objects.User;
@@ -16,14 +15,12 @@ import libraryloans.Objects.User;
  * @author mark1
  */
 public class UserReader {
-    public ArrayList<User> usersFromCSV;
-    
     public ArrayList<User> getUsers(String filename){
         return getUsersFromCSV(filename);
     }
 
 private ArrayList<User> getUsersFromCSV(String fileName) {
-    ArrayList<User> userList = new ArrayList<User>(); 
+    ArrayList<User> userList = new ArrayList<User>();
 
     try {
         File file = new File(fileName);

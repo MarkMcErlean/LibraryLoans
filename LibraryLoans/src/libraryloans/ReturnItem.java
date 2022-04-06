@@ -6,7 +6,6 @@ package libraryloans;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import libraryloans.Objects.Item;
 import libraryloans.Objects.Loan;
 
 /**
@@ -18,18 +17,14 @@ import libraryloans.Objects.Loan;
 public class ReturnItem {
     
     private final DataValidator validate;
-    private final ArrayList<Item> items;
     private final ArrayList<Loan> loans;
-    private final loanManager manageLoan;
     private Loan currentLoan;
     private LocalDate dueDate;
     
-    public ReturnItem(ArrayList<Item> itemsList, ArrayList<Loan> loansList,
-            DataValidator validator, loanManager issueItem){
+    public ReturnItem(ArrayList<Loan> loansList,
+            DataValidator validator){
         validate = validator;
-        items = itemsList;
-        loans = loansList; 
-        manageLoan = issueItem;
+        loans = loansList;
     }
     
     public void returnLoanItem(){
@@ -37,13 +32,13 @@ public class ReturnItem {
         String barcode = validate.getAndCheckBarcode();
         String userId = validate.getAndCheckUserId();
         LocalDate today = LocalDate.now();
-        
-        
-        for (int index = 0; index < loans.size(); index++){
-            if(loans.get(index).getBarcode().equals(barcode) && 
-                    loans.get(index).getUserID().equals(userId)){
-                currentLoan = loans.get(index);
-                dueDate = loans.get(index).getDueDate();
+
+
+        for (Loan loan : loans) {
+            if (loan.getBarcode().equals(barcode) &&
+                    loan.getUserID().equals(userId)) {
+                currentLoan = loan;
+                dueDate = loan.getDueDate();
             }
         }
         if (today.isAfter(dueDate)){

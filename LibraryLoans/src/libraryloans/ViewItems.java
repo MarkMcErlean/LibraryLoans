@@ -6,8 +6,6 @@ package libraryloans;
 
 import libraryloans.Objects.Loan;
 import libraryloans.Objects.Item;
-import libraryloans.Readers.LoanReader;
-import libraryloans.Readers.ItemReader;
 import java.util.ArrayList;
 
 /**
@@ -21,53 +19,35 @@ public class ViewItems {
     private final ArrayList<Loan> loans;
     private ArrayList<Item> heldItems;
     private ArrayList<Item> loanedItems;
-    private DataValidator validator;
-    private final loanManager newLoan;
     
     
-public ViewItems(ArrayList<Item> itemsList, ArrayList<Loan> loansList, loanManager issueItem){
+public ViewItems(ArrayList<Item> itemsList, ArrayList<Loan> loansList){
     items = itemsList;
     loans = loansList;
-    newLoan = issueItem;
 
 }
    /*
 for every index of loans, search through each index of items to see if the index
 is a match. if it is, add that index of item to loanedItems
 */
-private ArrayList<Item> getLoaned(){
+private void getLoaned(){
     loanedItems = new ArrayList<Item>();
     heldItems = new ArrayList<Item>();
-    for (int itemIndex = 0; itemIndex < items.size(); itemIndex ++){
-        for (int loanIndex = 0; loanIndex < loans.size(); loanIndex++){
-            try{    
-                if(items.get(itemIndex).getBarcode().equals(loans.get(loanIndex).getBarcode())){
-                    loanedItems.add(items.get(itemIndex));   
-                }else{
-                    heldItems.add(items.get(itemIndex));
-                }                   
-                }catch(IndexOutOfBoundsException e){
-                    break;
+    for (Item item : items) {
+        for (Loan loan : loans) {
+            try {
+                if (item.getBarcode().equals(loan.getBarcode())) {
+                    loanedItems.add(item);
+                } else {
+                    heldItems.add(item);
                 }
+            } catch (IndexOutOfBoundsException e) {
+                break;
+            }
         }
     }
-     return loanedItems;
 }
 
-//private ArrayList<Item> getHeld(){
-//    heldItems = new ArrayList<Item>();
-//    for (int itemIndex = 0; itemIndex < items.size(); itemIndex ++){
-//        for(int loanIndex = 0; loanIndex <loans.size(); loanIndex++){
-//                if(!items.get(itemIndex).getBarcode().equals(loans.get(loanIndex).getBarcode())){
-////                    heldItems.add(items.get(itemIndex)); 
-//                    System.out.println("item loaned");
-//                }else{
-//                    System.out.println("Item in stock");
-//                }  
-//        }
-//    }
-//        return heldItems;
-//}    
 
 
 private void removeDuplicatesHeld(){
@@ -89,18 +69,16 @@ private void removeDuplicatesHeld(){
   
 public void printItemsOnLoan(){
     this.getLoaned();
-    for( int index = 0; index < loanedItems.size(); index++){
-        System.out.println(loanedItems.get(index));
+    for (Item loanedItem : loanedItems) {
+        System.out.println(loanedItem);
     }
-  //  System.out.println(currentlyHeld);
-    //System.out.println(currentlyLoaned);
 }
     
 public void printItemsInLibrary(){
     //this.getLoaned();
     this.removeDuplicatesHeld();
-    for (int index = 0; index < heldItems.size(); index++){
-        System.out.println(heldItems.get(index));
+    for (Item heldItem : heldItems) {
+        System.out.println(heldItem);
     }
 
 }
