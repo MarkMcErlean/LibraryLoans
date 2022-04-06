@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package libraryloans.Objects;
 
 /**
@@ -11,10 +7,10 @@ package libraryloans.Objects;
 public class User {
     //User_id,first_name,last_name,email
     
-    private String userID;
-    private String fname;
-    private String lname;
-    private String email;
+    private final String userID;
+    private final String fname;
+    private final String lname;
+    private final String email;
     
     
     

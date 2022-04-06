@@ -6,8 +6,6 @@ package libraryloans;
 
 import libraryloans.Objects.Item;
 import libraryloans.Objects.User;
-import libraryloans.Readers.ItemReader;
-import libraryloans.Readers.UserReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,15 +14,13 @@ import java.util.Scanner;
  * 
  */
 public class DataValidator {
-    
-    private ItemReader readItems = new ItemReader();
-    private UserReader readUsers = new UserReader();
+
     //private IssueItem issueItem = new IssueItem();
-    private Scanner scan = new Scanner(System.in);
+    private final Scanner scan = new Scanner(System.in);
     
     
-    private ArrayList<Item> validItems;
-    private ArrayList<User> validUsers;
+    private final ArrayList<Item> validItems;
+    private final ArrayList<User> validUsers;
     //protected String requestedUserId;
     //protected String requestedBarcode;
     
@@ -38,7 +34,7 @@ public class DataValidator {
   
     private String requestInput(String message) {
         System.out.println(message);
-        String input = scan.next();
+        String input = scan.nextLine();
         return input;
     }
     
@@ -58,12 +54,12 @@ public class DataValidator {
     }
     
     private boolean checkUser(String requestedUserId){
-        for (int index = 0; index < validUsers.size(); index++){
-                if (requestedUserId.equalsIgnoreCase(validUsers.get(index).getUserID())){
-                    System.out.println("User found");
-                    return true;
-                }
+        for (User validUser : validUsers) {
+            if (requestedUserId.equalsIgnoreCase(validUser.getUserID())) {
+                System.out.println("User found");
+                return true;
             }
+        }
            
             System.out.println(" User not found : Invalid userID");  // if still not found, print message 
             return false;
@@ -98,13 +94,13 @@ public String getAndCheckBarcode(){
 
 
 public boolean checkItem(String requestedBarcode){
-	for (int index = 0; index < validItems.size(); index++){
-		if(requestedBarcode.equalsIgnoreCase(validItems.get(index).getBarcode())){
-			System.out.println("Item found");
-			return true;
-		}
+    for (Item validItem : validItems) {
+        if (requestedBarcode.equalsIgnoreCase(validItem.getBarcode())) {
+            System.out.println("Item found");
+            return true;
+        }
 
-	}
+    }
 	
 	System.out.println("Item not found : invalid barcode");
 	return false;

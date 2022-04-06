@@ -15,9 +15,9 @@ public class Loan {
     
     //Barcode,User_id,Issue_Date,Due_Date,numRenews
     
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-        private String barcode;
-        private String userID;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        private final String barcode;
+        private final String userID;
         private LocalDate issueDate;
         private LocalDate dueDate;
         private int numRenews;

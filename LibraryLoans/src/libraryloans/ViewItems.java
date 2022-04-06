@@ -17,12 +17,12 @@ import java.util.ArrayList;
  * Stephen McKeown (B00    )
  */
 public class ViewItems {
-    private ArrayList<Item> items;
-    private ArrayList<Loan> loans;
+    private final ArrayList<Item> items;
+    private final ArrayList<Loan> loans;
     private ArrayList<Item> heldItems;
     private ArrayList<Item> loanedItems;
     private DataValidator validator;
-    private loanManager newLoan;
+    private final loanManager newLoan;
     
     
 public ViewItems(ArrayList<Item> itemsList, ArrayList<Loan> loansList, loanManager issueItem){

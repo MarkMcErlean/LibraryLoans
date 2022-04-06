@@ -62,8 +62,7 @@ private ArrayList<Item> getItemsFromCSV(String fileName) {
 **/
 private Item itemFromString(String itemString) {
             String[] itemContents = itemString.split(",");   // split the line at each comma
-            
-            
+
             return new Item(
                 itemContents[0], 
                 itemContents[1],

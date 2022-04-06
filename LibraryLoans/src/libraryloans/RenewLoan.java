@@ -16,10 +16,10 @@ import libraryloans.Objects.Loan;
  * Stephen McKeown (B00    )
  */
 public class RenewLoan {
-    private DataValidator validate;
-    private ArrayList<Item> items; 
-    private ArrayList<Loan> loans;
-    private loanManager manageLoan;
+    private final DataValidator validate;
+    private final ArrayList<Item> items;
+    private final ArrayList<Loan> loans;
+    private final loanManager manageLoan;
     
     public RenewLoan(ArrayList<Item> itemsList, ArrayList<Loan> loansList,
             DataValidator validator, loanManager issueItem){

@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package libraryloans;
 import libraryloans.Readers.UserReader;
 import libraryloans.Readers.ItemReader;
 import libraryloans.Readers.LoanReader;
 import java.util.*;
-import java.io.*;
-import java.time.*;
 import libraryloans.Objects.Item;
 import libraryloans.Objects.User;
 import libraryloans.Objects.Loan;
@@ -26,7 +21,7 @@ import libraryloans.Objects.Loan;
 public class LibraryLoans {
 
     /**
-     * @param args the command line arguments
+     *
  
   upon program getItems, should read from three CSV files
   to populate application with previously stored data 
@@ -34,34 +29,33 @@ public class LibraryLoans {
      */
     
     
-    private ItemReader populateItems = new ItemReader();
-    private LoanReader populateLoans = new LoanReader();
-    private UserReader populateUsers = new UserReader();
-    private DataValidator validator;
+    private final ItemReader populateItems = new ItemReader();
+    private final LoanReader populateLoans = new LoanReader();
+    private final UserReader populateUsers = new UserReader();
     private loanManager manageLoan;
     private RenewLoan renewLoan;
-    private ReturnItem returnItem = new ReturnItem();
+    private ReturnItem returnItem;
     private ViewItems viewItems;
-    private ArrayList<Item> items;  // <-- make sure this is at the top of the code 
+    private ArrayList<Item> items;  // <-- make sure this is at the top of the code
     private ArrayList<User> users;
     private ArrayList<Loan> loans;
-    
-    //public LibraryLoans(){
+
        
 //}
-    //private loanManager issueitem = new loanManager();
+
     
     
     private void start(){
-        items = populateItems.getItems("ITEMS.csv");
-        loans = populateLoans.getLoans("LOANS.csv");    //testing
-        users = populateUsers.getUsers("USERS.csv");    //testing
-        validator = new DataValidator(items, users);
-        manageLoan = new loanManager(items, loans, validator);  //<-- this feeds the items list to the class issue item (i'll comment there too)
+        items = populateItems.getItems("src\\ITEMS.csv");
+        loans = populateLoans.getLoans("src\\LOANS.csv");    //testing
+        users = populateUsers.getUsers("src\\USERS.csv");    //testing
+        DataValidator validator = new DataValidator(items, users);
+        manageLoan = new loanManager(items, loans, validator);  //<-- this feeds the items list to the class issue item (I'll comment there too)
         viewItems = new ViewItems(items, loans, manageLoan);
         renewLoan = new RenewLoan(items, loans, validator, manageLoan);
+        returnItem = new ReturnItem(items, loans, validator, manageLoan);
        
-        
+        this.menu();
         
         //populateItems.getList();
         
@@ -72,28 +66,27 @@ public class LibraryLoans {
         //issueItem.issue();
         //viewItems.printItemsOnLoan();
         //viewItems.printItemsInLibrary();
-        renewLoan.extendLoan();
+        //renewLoan.extendLoan();
+        //returnItem.returnLoanItem();
         //validator.getAndCheckUserId();
         
         //this.menu(); // NEEDS TO BE UPDATED
         //viol.sortItems();
        //populateItems.printItems();
-       
-        
-       
-        
-    }
-    //public void menu(ArrayList<Item> itemList ){
     
-    public void menu(){
+    }
+    
+    private void menu(){
         //int[] options = {0,1,2,3,4,5,6};
+        boolean keepGoing = true;
         int userInput;
         
         Scanner choice = new Scanner(System.in);
-        
+        try{
+        do{
         // creation of basic menu
         // ask user what they want to do
-        System.out.println("What would you like to do? ");
+        System.out.println("What would you like to do? Enter a number to perform a function");
         System.out.println("Option 1: Issue a new loan ");
         System.out.println("Option 2: Renew existing loan");
         System.out.println("Option 3: Return an Item");
@@ -107,46 +100,51 @@ public class LibraryLoans {
         // let user number input = the option in array
         
         // set of switch case statements that match the instructions in menu
-        
-        switch (userInput){
-            case 1:
-                System.out.println("option 1");
-                System.out.println("\n");
-                manageLoan.issue();
+
+            switch (userInput) {
+                case 1 -> {
+                    System.out.println("Option 1: Issue a new loan");
+                    System.out.println("\n");
+                    manageLoan.issue();
+                }
                 // call issueItems code here
-                break;
-            case 2: 
-                System.out.println("option 2");
-                System.out.println("\n");
-                
+                case 2 -> {
+                    System.out.println("Option 2: Renew an existing loan");
+                    System.out.println("\n");
+                    renewLoan.extendLoan();
+                }
                 // call renewLoan code here
-                break;
-            case 3:
-                System.out.println("option 3");
-                System.out.println("\n");
-                
+                case 3 -> {
+                    System.out.println("Option 3: Return an item");
+                    System.out.println("\n");
+                    returnItem.returnLoanItem();
+                }
                 // call returnItems code here
-                break;
-            case 4:
-                System.out.println("option 4");
-                System.out.println("\n");
-                
-                viewItems.printItemsOnLoan();
-                
-                break;
-            case 5:
-                System.out.println("option 5");
-                System.out.println("\n");
-                // currently broken - gives all records instead of just those in 
-                // stock
-                viewItems.printItemsInLibrary();
-                break;
-            case 6:
-                System.out.println("option 6");
-                break;
-            default:
-                System.out.println("Please select a valid option");
-                this.menu();
+                case 4 -> {
+                    System.out.println("Option 4: Print items currently loaned");
+                    System.out.println("\n");
+                    viewItems.printItemsOnLoan();
+                }
+                case 5 -> {
+                    System.out.println("Option 5: Print all items");
+                    System.out.println("\n");
+                    // stock
+                    viewItems.printItemsInLibrary();
+                }
+                case 6 -> {
+                    System.out.println("Option 6: Saving any changes... Exiting the program...");
+                    keepGoing = false;
+                }
+                default -> {
+                    System.out.println("Please select a valid option");
+                    this.menu();
+                }
+            }
+        }while(keepGoing);
+        }catch(InputMismatchException e){
+            System.out.println("There was an error with your input, please"
+                    + " try again");
+            this.menu();
         }
     }
     

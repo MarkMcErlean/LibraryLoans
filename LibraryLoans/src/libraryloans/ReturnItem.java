@@ -4,6 +4,11 @@
  */
 package libraryloans;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import libraryloans.Objects.Item;
+import libraryloans.Objects.Loan;
+
 /**
  *
  * Created by:
@@ -11,9 +16,51 @@ package libraryloans;
  * Stephen McKeown (B00    )
  */
 public class ReturnItem {
-    // input barcode
     
-    //read input, verify if valid
+    private final DataValidator validate;
+    private final ArrayList<Item> items;
+    private final ArrayList<Loan> loans;
+    private final loanManager manageLoan;
+    private Loan currentLoan;
+    private LocalDate dueDate;
+    
+    public ReturnItem(ArrayList<Item> itemsList, ArrayList<Loan> loansList,
+            DataValidator validator, loanManager issueItem){
+        validate = validator;
+        items = itemsList;
+        loans = loansList; 
+        manageLoan = issueItem;
+    }
+    
+    public void returnLoanItem(){
+    
+        String barcode = validate.getAndCheckBarcode();
+        String userId = validate.getAndCheckUserId();
+        LocalDate today = LocalDate.now();
+        
+        
+        for (int index = 0; index < loans.size(); index++){
+            if(loans.get(index).getBarcode().equals(barcode) && 
+                    loans.get(index).getUserID().equals(userId)){
+                currentLoan = loans.get(index);
+                dueDate = loans.get(index).getDueDate();
+            }
+        }
+        if (today.isAfter(dueDate)){
+            System.out.println("Item is overdue ");
+            loans.remove(currentLoan);
+
+        } else{
+            System.out.println("Item returned");
+            //System.out.println(currentLoan);
+            loans.remove(currentLoan);
+
+        }
+}
+    
+   
+    
+    
     
     // Items must be returned on or before their due date
     

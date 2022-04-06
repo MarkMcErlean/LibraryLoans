@@ -24,12 +24,12 @@ import java.util.List;
  */
 public class loanManager {
     
-    private DataValidator validate;
+    private final DataValidator validate;
     
     //private String barcode;
-    private ArrayList<Item> items; 
-    private ArrayList<Loan> loans;
-    private Scanner scan = new Scanner(System.in);
+    private final ArrayList<Item> items;
+    private final ArrayList<Loan> loans;
+    private final Scanner scan = new Scanner(System.in);
     
     public loanManager(ArrayList<Item> itemsList, ArrayList<Loan> loansList, DataValidator validator){
         items = itemsList;
