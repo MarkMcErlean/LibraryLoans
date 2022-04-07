@@ -35,9 +35,9 @@ public class LibraryLoans {
 
   
     private void start(){
-        items = populateItems.getItems("src\\ITEMS.csv");
-        loans = populateLoans.getLoans("src\\LOANS.csv");
-        users = populateUsers.getUsers("src\\USERS.csv");
+        items = populateItems.getItems("ITEMS.csv");
+        loans = populateLoans.getLoans("LOANS.csv");
+        users = populateUsers.getUsers("USERS.csv");
         DataValidator validator = new DataValidator(items, users);
         manageLoan = new loanManager(items, loans, validator);
         viewItems = new ViewItems(items, loans);
@@ -46,6 +46,13 @@ public class LibraryLoans {
         loanWriter = new LoanWriter(loans);
         this.menu();
 
+    }
+    
+    private void continueToMenu(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Press enter to continue to menu...");
+        String continueToMenu = scan.nextLine();
+        
     }
     
     private void menu(){
@@ -77,38 +84,45 @@ public class LibraryLoans {
                     System.out.println("Option 1: Issue a new loan");
                     System.out.println("\n");
                     manageLoan.issue();
+                    this.continueToMenu();
                 }
                 // call issueItems code here
                 case 2 -> {
                     System.out.println("Option 2: Renew an existing loan");
                     System.out.println("\n");
                     renewLoan.extendLoan();
+                    this.continueToMenu();
                 }
                 // call renewLoan code here
                 case 3 -> {
                     System.out.println("Option 3: Return an item");
                     System.out.println("\n");
                     returnItem.returnLoanItem();
+                    this.continueToMenu();
                 }
                 // call returnItems code here
                 case 4 -> {
                     System.out.println("Option 4: Print items currently loaned");
                     System.out.println("\n");
                     viewItems.printItemsOnLoan();
+                    this.continueToMenu();
                 }
                 case 5 -> {
                     System.out.println("Option 5: Print all items");
                     System.out.println("\n");
                     // stock
                     viewItems.printItemsInLibrary();
+                    this.continueToMenu();
                 }
                 case 6 -> {
                     System.out.println("Option 6: Saving any changes... Exiting the program...");
                     loanWriter.writeToFile("src\\LOANS.csv");
                     keepGoing = false;
+                    
                 }
                 default -> {
                     System.out.println("Please select a valid option");
+                    this.continueToMenu();
                     this.menu();
                 }
             }
@@ -116,6 +130,7 @@ public class LibraryLoans {
         }catch(InputMismatchException e){
             System.out.println("There was an error with your input, please"
                     + " try again");
+            this.continueToMenu();
             this.menu();
         }
     }
