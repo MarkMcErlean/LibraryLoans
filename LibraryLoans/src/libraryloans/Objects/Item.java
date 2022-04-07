@@ -10,24 +10,24 @@ package libraryloans.Objects;
  * Stephen McKeown (B00839440)
  * 
  */
-public class Item {
+public abstract class Item {
     
     //Barcode,Author/Artist,Title,Type,Year,ISBN
     
-    private final String barcode;
-    private final String authorArtist;
-    private final String title;
-    private final String type;
-    private final String year;
-    private final String isbn;
+    protected final String barcode;
+    //private final String authorArtist;
+    protected final String title;
+    protected final String type;
+    protected final String year;
+    protected final String isbn;
     
     
     // constructor to initialise the data in items
     
-    public Item(String barcode, String authorArtist, String title, String type, String year, String isbn){
+    public Item(String barcode,  String title, String type, String year, String isbn){
         
         this.barcode = barcode;
-        this.authorArtist = authorArtist;
+        //this.authorArtist = authorArtist;
         this.title = title;
         this.type = type;
         this.year = year;
@@ -39,9 +39,9 @@ public class Item {
         return barcode;
     }
     
-    public String getAuthorArtist(){
-        return authorArtist;
-    }
+//    public String getAuthorArtist(){
+//        return authorArtist;
+//    }
     
     public String getTitle(){
         return title;
@@ -61,11 +61,7 @@ public class Item {
     
     public int getMaxRenews(){
         int maxRenews = 1;
-        if( this.type.equals("Book")){
-            maxRenews = 3;
-        }else{
-            maxRenews = 2;
-        }
+        
         return maxRenews;
     }
     
@@ -74,7 +70,7 @@ public class Item {
     public String toString(){
         return "Barcode: " + this.barcode
                 + "\nAuthor/Artist: " 
-                + this.authorArtist 
+               // + this.authorArtist 
                 + "\nTitle: " + this.title 
                 + "\nType: " + this.type 
                 +  "\nYear: " + this.year 

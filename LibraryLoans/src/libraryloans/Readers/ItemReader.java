@@ -55,7 +55,7 @@ private ArrayList<Item> getItemsFromCSV(String fileName) {
 **/
 private Item itemFromString(String itemString) {
             String[] itemContents = itemString.split(",");   // split the line at each comma
-            if (itemContents[1] .equalsIgnoreCase("Book")){
+            if (itemContents[3] .equalsIgnoreCase("Book")){
             return new book(
                 itemContents[0], 
                 itemContents[1],
@@ -64,7 +64,7 @@ private Item itemFromString(String itemString) {
                 itemContents[4],
                 itemContents[5]
             );
-            }else if (itemContents[1].equalsIgnoreCase("Multimedia")){
+            }else{
                 return new multimedia(
                 itemContents[0], 
                 itemContents[1],
@@ -73,15 +73,16 @@ private Item itemFromString(String itemString) {
                 itemContents[4],
                 itemContents[5]
             );
-            }else{
-                return new Item(
-                itemContents[0], 
-                itemContents[1],
-                itemContents[2],
-                itemContents[3],
-                itemContents[4],
-                itemContents[5]
-            );
+
+//            }else{
+//                return new Item(
+//                itemContents[0], 
+//                itemContents[1],
+//                itemContents[2],
+//                itemContents[3],
+//                itemContents[4],
+//                itemContents[5]
+//            );
             }       
 }
    

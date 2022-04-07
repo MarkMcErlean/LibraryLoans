@@ -21,7 +21,7 @@ public class book extends Item {
     // constructor to initialise the data in items
     
     public book(String barcode, String author, String title, String type, String year, String isbn){
-        super(barcode, author, title, type, year, isbn);
+        super(barcode, title, type, year, isbn);
         this.author = author;
     }
 
@@ -29,18 +29,23 @@ public class book extends Item {
         return author;
     }
     
-//    public void getMaxRenews(){
-//    int maxRenews = 3;
-//    }
+    @Override
+    public int getMaxRenews(){
+    int maxRenews = 3;
+    return maxRenews;
+    }
     
     @Override
     public String toString(){
-        return super.toString() 
-                +"\nArtist: " 
+        return "Barcode: " + super.barcode
+                + "\nAuthor: " 
                 + this.author 
+                + "\nTitle: " + super.title 
+                + "\nType: " + super.type 
+                +  "\nYear: " + super.year 
+                + "\nISBN: " + super.isbn 
                 + "\n\n" ;
-    }
- 
+    } 
     
     
 }

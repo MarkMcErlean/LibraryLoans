@@ -29,15 +29,12 @@ public class LibraryLoans {
     private RenewLoan renewLoan;
     private ReturnItem returnItem;
     private ViewItems viewItems;
-    private ArrayList<Item> items;
-    private ArrayList<User> users;
-    private ArrayList<Loan> loans;
 
-  
+
     private void start(){
-        items = populateItems.getItems("ITEMS.csv");
-        loans = populateLoans.getLoans("LOANS.csv");
-        users = populateUsers.getUsers("USERS.csv");
+        ArrayList<Item> items = populateItems.getItems("ITEMS.csv");
+        ArrayList<Loan> loans = populateLoans.getLoans("LOANS.csv");
+        ArrayList<User> users = populateUsers.getUsers("USERS.csv");
         DataValidator validator = new DataValidator(items, users);
         manageLoan = new loanManager(items, loans, validator);
         viewItems = new ViewItems(items, loans);
@@ -116,7 +113,7 @@ public class LibraryLoans {
                 }
                 case 6 -> {
                     System.out.println("Option 6: Saving any changes... Exiting the program...");
-                    loanWriter.writeToFile("src\\LOANS.csv");
+                    loanWriter.writeToFile("LOANS.csv");
                     keepGoing = false;
                     
                 }

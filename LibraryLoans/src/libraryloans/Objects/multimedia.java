@@ -20,7 +20,7 @@ public class multimedia extends Item {
     // constructor to initialise the data in items
     
     public multimedia(String barcode, String artist, String title, String type, String year, String isbn){
-        super(barcode, artist, title, type, year, isbn);
+        super(barcode, title, type, year, isbn);
         this.artist = artist;
         
         
@@ -31,17 +31,23 @@ public class multimedia extends Item {
         return artist;
     }
     
-//     public void getMaxRenews(){
-//    int maxRenews = 2;
-//    }
+    @Override
+     public int getMaxRenews(){
+    int maxRenews = 2;
+    return maxRenews;
+    }
     
     @Override
     public String toString(){
-        return super.toString() 
-                +"\nArtist: " 
+        return "Barcode: " + super.barcode
+                + "\nArtist: " 
                 + this.artist 
+                + "\nTitle: " + super.title 
+                + "\nType: " + super.type 
+                +  "\nYear: " + super.year 
+                + "\nISBN: " + super.isbn 
                 + "\n\n" ;
-    }
+    } 
  
     
     

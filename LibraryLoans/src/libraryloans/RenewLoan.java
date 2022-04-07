@@ -20,9 +20,9 @@ public class RenewLoan {
     private ArrayList<Item> items;
     private final ArrayList<Loan> loans;
     private final loanManager manageLoan;
-    private int maxRenews;
-    private int currentRenews;
-    private String barcode;
+    //private int maxRenews;
+    //private int currentRenews;
+    //private String barcode;
     private String userID;
     
     public RenewLoan(ArrayList<Loan> loansList,ArrayList<Item> itemsList,
@@ -34,16 +34,17 @@ public class RenewLoan {
     }
     
     public void extendLoan(){
-        barcode = validate.getAndCheckBarcode();
+        String barcode = validate.getAndCheckBarcode();
         userID = validate.getAndCheckUserId();
         String type = manageLoan.checkType(barcode);
+        
         LocalDate issueDate = LocalDate.now();
         LocalDate dueDate = manageLoan.renew(issueDate, type);
-        this.getCurrentRenews();
-        this.getCurrentRenews();
         
-     
-//        for (Loan loan : loans) {
+        this.getCurrentRenews(barcode);
+        this.getMaxRenews(barcode);
+        
+        
           for (Loan loan : loans){
             if (barcode.equals(loan.getBarcode()) && userID.equals(loan.getUserID())) {
                 loan.setDueDate(dueDate);
@@ -53,22 +54,34 @@ public class RenewLoan {
         }
 
     
-    private int getMaxRenews(){
-        for (Item item : items){
-            if (barcode.equals(item.getBarcode())) {
-                maxRenews = item.getMaxRenews();
-            }
-        }
-        return maxRenews;
+    private int getMaxRenews(String barcode){
+        return getItem(barcode).getMaxRenews();
     }
     
-    private int getCurrentRenews(){
-        for (Loan loan : loans){
-            if (barcode.equals(loan.getBarcode()) && userID.equals(loan.getUserID())) {
-                currentRenews = loan.getNumRenews();
+    private int getCurrentRenews(String barcode){
+        return getLoan(barcode).getNumRenews();
+    }
+    
+    private Item getItem(String barcode){
+        Item retreivedItem = null;
+        for (Item item : items){
+            if (barcode.equals(item.getBarcode())) {
+                retreivedItem = item;
             }
         }
-        return currentRenews;
+        return retreivedItem;
+        
+    }
+    
+    private Loan getLoan(String barcode){
+        Loan retrievedLoan = null;
+        
+        for (Loan loan : loans){
+            if (barcode.equals(loan.getBarcode()) && userID.equals(loan.getUserID())) {
+                retrievedLoan = loan;
+            }
+        }
+        return retrievedLoan;
     }
     
 }
