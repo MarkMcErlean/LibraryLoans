@@ -45,11 +45,10 @@ public class LibraryLoans {
 
     }
     
-    private void continueToMenu(){
+    public void continueToMenu(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Press enter to continue to menu...");
         String continueToMenu = scan.nextLine();
-        
     }
     
     private void menu(){

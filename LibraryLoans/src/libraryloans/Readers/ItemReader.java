@@ -47,7 +47,7 @@ private ArrayList<Item> getItemsFromCSV(String fileName) {
 }
 
 /** 
-* Create object of item(), uses below contructor
+* Create object of item(), uses below constructor
  Item(String barcode, String authorArtist, String title, String type, String year, String isbn)
  which matches order of items in CSV file, so can directly create from array
 * @param itemString The plain string version of the item you intend to return

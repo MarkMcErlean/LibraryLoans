@@ -19,7 +19,7 @@ public class ReturnItem {
     private final DataValidator validate;
     private final ArrayList<Loan> loans;
     private Loan currentLoan;
-    private LocalDate dueDate;
+    //private LocalDate dueDate;
     
     public ReturnItem(ArrayList<Loan> loansList,
             DataValidator validator){
@@ -32,13 +32,22 @@ public class ReturnItem {
         String barcode = validate.getAndCheckBarcode();
         String userId = validate.getAndCheckUserId();
         LocalDate today = LocalDate.now();
+        LocalDate dueDate = null;
 
         // for each oject of loan in Loans array
         for (Loan loan : loans) {
+            try{
             if (loan.getBarcode().equals(barcode) &&
                     loan.getUserID().equals(userId)) {
                 currentLoan = loan;
-                dueDate = loan.getDueDate();
+                dueDate = currentLoan.getDueDate();
+            }else{
+                System.out.println("Record does not exist, please try again");
+                this.returnLoanItem();
+            }
+            }catch(NullPointerException nullException){
+                System.out.println("That record does not exist, try again");
+                this.returnLoanItem();
             }
         }
         if (today.isAfter(dueDate)){
@@ -47,7 +56,6 @@ public class ReturnItem {
 
         } else{
             System.out.println("Item returned");
-            //System.out.println(currentLoan);
             loans.remove(currentLoan);
 
         }
