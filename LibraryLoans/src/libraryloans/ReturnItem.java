@@ -41,9 +41,11 @@ public class ReturnItem {
                     loan.getUserID().equals(userId)) {
                 currentLoan = loan;
                 dueDate = currentLoan.getDueDate();
+                break;
             }else{
                 System.out.println("Record does not exist, please try again");
                 this.returnLoanItem();
+                break;
             }
             }catch(NullPointerException nullException){
                 System.out.println("That record does not exist, try again");
@@ -51,8 +53,9 @@ public class ReturnItem {
             }
         }
         if (today.isAfter(dueDate)){
-            System.out.println("Item is overdue ");
+            System.out.println("Item is overdue... ");
             loans.remove(currentLoan);
+            System.out.println("Item returned");
 
         } else{
             System.out.println("Item returned");
