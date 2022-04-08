@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package libraryloans.Objects;
 
 import java.time.LocalDate;
@@ -11,6 +7,8 @@ import java.time.format.DateTimeFormatter;
  * Created by:
  * Mark McErlean (B00842054)
  * Stephen McKeown (B00839440)
+ * 
+ * This class creates Loan objects
  *
  */
 public class Loan {
@@ -37,6 +35,7 @@ public class Loan {
         this.numRenews = numRenews;
         
     }
+    // getters and setters
     
     public String getBarcode(){
         return barcode;
@@ -86,8 +85,8 @@ public class Loan {
     }
     
    
+    // Overriding the toString method to print easily
     
-    // In below to string format your date
     @Override
     public String toString(){
         return "Barcode: " 

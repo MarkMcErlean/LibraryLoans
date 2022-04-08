@@ -14,6 +14,8 @@ import libraryloans.Objects.Loan;
  * Mark McErlean (B00842054)
  * Stephen McKeown (B00839440)
  * 
+ * Reads data from a file and stores the data as an object in an arrayList
+ * 
  */
 public class LoanReader {
     public ArrayList<Loan> getLoans(String filename){
@@ -24,8 +26,8 @@ private ArrayList<Loan> getLoansFromCSV(String fileName){
         ArrayList<Loan> loanList = new ArrayList<Loan>();
         
         try{
-        File file = new File(fileName);  //setting filename to ITEMS.csv
-        Scanner lineScanner = new Scanner(file);      //initialising scanner to scan through the file
+        File file = new File(fileName);
+        Scanner lineScanner = new Scanner(file);
         String headerLine = lineScanner.nextLine();
         
          while (lineScanner.hasNextLine()){
@@ -34,7 +36,7 @@ private ArrayList<Loan> getLoansFromCSV(String fileName){
             loanList.add(loanFromString(line));
         }
         
-        return loanList;                        //return statement for ArrayList
+        return loanList;
     } catch (FileNotFoundException e) {
         System.out.println("Error reading file");
         return loanList;

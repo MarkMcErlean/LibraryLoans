@@ -9,28 +9,24 @@ package libraryloans.Objects;
  * Mark McErlean (B00842054)
  * Stephen McKeown (B00839440)
  * 
+ * Inherits data from Item
  */
 public class multimedia extends Item {
     
     //Barcode,Author/Artist,Title,Type,Year,ISBN
     protected String artist;
-    
-    
-    
+
     // constructor to initialise the data in items
     
     public multimedia(String barcode, String artist, String title, String type, String year, String isbn){
         super(barcode, title, type, year, isbn);
         this.artist = artist;
-        
-        
     }
 
-    
-    public String artist(){
+    public String getArtist(){
         return artist;
     }
-    
+    // Overriding Item getMaxRenews Method to 2 max max renews
     @Override
      public int getMaxRenews(){
     int maxRenews = 2;

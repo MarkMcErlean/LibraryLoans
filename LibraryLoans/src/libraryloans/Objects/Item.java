@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package libraryloans.Objects;
 
 /**
  * Created by:
  * Mark McErlean (B00842054)
  * Stephen McKeown (B00839440)
+ * 
+ * This is the main Item class - it is abstract as the program will use 
+ * subclasses of Item for their functions.
+ * 
+ * This class stores the data that other Item types have in common.
  * 
  */
 public abstract class Item {
@@ -35,13 +36,12 @@ public abstract class Item {
         
     }
     
+    // Getters and Setters
+    
     public String getBarcode(){
         return barcode;
     }
     
-//    public String getAuthorArtist(){
-//        return authorArtist;
-//    }
     
     public String getTitle(){
         return title;
@@ -65,6 +65,7 @@ public abstract class Item {
         return maxRenews;
     }
     
+    // Overriding the toString method to print easily
     
     @Override
     public String toString(){

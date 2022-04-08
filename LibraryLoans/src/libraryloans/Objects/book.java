@@ -10,6 +10,8 @@ package libraryloans.Objects;
  * Mark McErlean (B00842054)
  * Stephen McKeown (B00839440)
  * 
+ * Inherits data from Item.
+ * 
  */
 public class book extends Item {
     
@@ -25,16 +27,19 @@ public class book extends Item {
         this.author = author;
     }
 
-    public String artist(){
+    public String getAuthor(){
         return author;
     }
     
+    
+    // Overriding the Item getMaxRenews method
     @Override
     public int getMaxRenews(){
     int maxRenews = 3;
     return maxRenews;
     }
     
+    // Overriding the toString method to print easily
     @Override
     public String toString(){
         return "Barcode: " + super.barcode

@@ -26,6 +26,7 @@ public class User {
         this.lname = lname;
         this.email = email;
     }
+    // Getters and setters
     
     public String getUserID(){
         return userID;
@@ -43,8 +44,7 @@ public class User {
         return email;
     }
     
-   
-    
+    // Overriding the toString method to print easily
     
     @Override
     public String toString(){
